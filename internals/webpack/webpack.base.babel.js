@@ -7,15 +7,13 @@ const webpack = require('webpack'); // eslint-disable-line
 
 // Remove this line once the following warning goes away
 // (it was meant for webpack loader authors not users):
-// 'DeprecationWarning: loaderUtils.parseQuery()
-// received a non-string value which can be problematic,
-// see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with
-// getOptions()
+// 'DeprecationWarning: loaderUtils.parseQuery() received a non-string
+// value which can be problematic,
+// see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with getOptions()
 // in the next major version of loader-utils.'
 process.noDeprecation = true;
 
 module.exports = options => ({
-  mode: options.mode,
   entry: options.entry,
   output: Object.assign(
     {
@@ -25,7 +23,6 @@ module.exports = options => ({
     },
     options.output,
   ), // Merge with env dependent settings
-  optimization: options.optimization,
   module: {
     rules: [
       {
@@ -51,48 +48,19 @@ module.exports = options => ({
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(eot|otf|ttf|woff|woff2)$/,
+        test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
         use: 'file-loader',
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              // Inline files smaller than 10 kB
-              limit: 10 * 1024,
-              noquotes: true,
-            },
-          },
-        ],
       },
       {
         test: /\.(jpg|png|gif)$/,
         use: [
-          {
-            loader: 'url-loader',
-            options: {
-              // Inline files smaller than 10 kB
-              limit: 10 * 1024,
-            },
-          },
+          'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {
-              mozjpeg: {
-                enabled: false,
-                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
-                // Try enabling it in your environment by switching the config to:
-                // enabled: true,
-                // progressive: true,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
+              progressive: true,
+              optimizationLevel: 7,
+              interlaced: false,
               pngquant: {
                 quality: '65-90',
                 speed: 4,
@@ -104,6 +72,10 @@ module.exports = options => ({
       {
         test: /\.html$/,
         use: 'html-loader',
+      },
+      {
+        test: /\.json$/,
+        use: 'json-loader',
       },
       {
         test: /\.(mp4|webm)$/,
@@ -130,13 +102,23 @@ module.exports = options => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
-    modules: ['node_modules', 'app'],
+    modules: ['app', 'node_modules'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
+    alias: {
+      moment$: 'moment/moment.js',
+    },
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+  },
   performance: options.performance || {},
 });

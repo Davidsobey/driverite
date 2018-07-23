@@ -1,47 +1,53 @@
-/**
- * app.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
- */
+import 'babel-polyfill'; // Needed for redux-saga es6 generator support
 
-// Needed for redux-saga es6 generator support
-import 'babel-polyfill';
-
-// Import all the third party stuff
+// Import all the third party libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
+import { MuiThemeProvider } from 'material-ui/styles';
+import { CookiesProvider } from 'react-cookie';
 import 'sanitize.css/sanitize.css';
 
-// Import root app
-import App from './containers/App';
-
 // Import Language Provider
-import LanguageProvider from './containers/LanguageProvider';
+import LanguageProvider from '../app/containers/LanguageProvider';
 
-// Load the favicon and the .htaccess file
-import '!file-loader?name=[name].[ext]!./images/favicon.ico'; // eslint-disable-line
-import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line
+// Import root app
+import App from '../app/containers/App';
 
+// Import CSS reset and Global Styles
+import '../app/styles/global-styles';
+import '../app/styles/material-dashboard-react.css';
+import muiTheme from '../app/styles/material-theme';
+
+// Load the favicon, the manifest.json file and the .htaccess file
+/* eslint-disable */
+import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
+import '!file-loader?name=[name].[ext]!./images/favicons/favicon-16x16.png';
+import '!file-loader?name=[name].[ext]!./images/favicons/favicon-32x32.png';
+import '!file-loader?name=[name].[ext]!./images/favicons/mstile-150x150.png';
+import '!file-loader?name=[name].[ext]!./images/favicons/safari-pinned-tab.svg';
+import '!file-loader?name=[name].[ext]!./images/favicons/android-chrome-192x192.png';
+import '!file-loader?name=[name].[ext]!./images/favicons/android-chrome-512x512.png';
+import '!file-loader?name=[name].[ext]!./images/favicons/apple-touch-icon.png';
+import '!file-loader?name=[name].[ext]!./manifest.json';
+import 'file-loader?name=[name].[ext]!./.htaccess';
+/* eslint-enable */
+
+// Configure redux store
 import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
 
-// Import CSS reset and Global Styles
-import './global-styles';
+import { loadDispatcher } from './utils/request';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
+const roboto = new FontFaceObserver('Roboto');
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
+roboto.load().then(() => {
+  document.documentElement.className += ' fonts-loaded';
 });
 
 // Create redux store with history
@@ -50,12 +56,18 @@ const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+loadDispatcher(store.dispatch);
+
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <CookiesProvider>
+            <MuiThemeProvider theme={muiTheme}>
+              <App />
+            </MuiThemeProvider>
+          </CookiesProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
@@ -78,10 +90,14 @@ if (!window.Intl) {
   new Promise((resolve) => {
     resolve(import('intl'));
   })
-    .then(() => Promise.all([
+    .then(() =>
+      Promise.all([
         import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/de.js'),
-    ]))
+        import('intl/locale-data/jsonp/af.js'),
+        import('intl/locale-data/jsonp/zu.js'),
+        // import('intl/locale-data/jsonp/xh.js'),
+      ]),
+    )
     .then(() => render(translationMessages))
     .catch((err) => {
       throw err;

@@ -1,13 +1,10 @@
 // Important modules this config uses
 const path = require('path');
+const webpack = require('webpack'); // eslint-disable-line
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
-const WebpackPwaManifest = require('webpack-pwa-manifest'); // eslint-disable-line
 const OfflinePlugin = require('offline-plugin'); // eslint-disable-line
-const { HashedModuleIdsPlugin } = require('webpack'); // eslint-disable-line
 
 module.exports = require('./webpack.base.babel')({
-  mode: 'production',
-
   // In production, we skip all hot-reloading stuff
   entry: [path.join(process.cwd(), 'app/app.js')],
 
@@ -17,16 +14,15 @@ module.exports = require('./webpack.base.babel')({
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
 
-  optimization: {
-    minimize: true,
-    nodeEnv: 'production',
-    sideEffects: true,
-    concatenateModules: true,
-    splitChunks: { chunks: 'all' },
-    runtimeChunk: true,
-  },
-
   plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      children: true,
+      minChunks: 2,
+      async: true,
+    }),
+
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
@@ -50,7 +46,6 @@ module.exports = require('./webpack.base.babel')({
     new OfflinePlugin({
       relativePaths: false,
       publicPath: '/',
-      appShell: '/',
 
       // No need to cache .htaccess. See http://mxs.is/googmp,
       // this is applied before any match in `caches` section
@@ -67,30 +62,13 @@ module.exports = require('./webpack.base.babel')({
 
       // Removes warning for about `additional` section usage
       safeToUseOptionalCaches: true,
-    }),
 
-    new WebpackPwaManifest({
-      name: 'React Boilerplate',
-      short_name: 'React BP',
-      description: 'My React Boilerplate-based project!',
-      background_color: '#fafafa',
-      theme_color: '#b1624d',
-      icons: [
-        {
-          src: path.resolve('app/images/icon-512x512.png'),
-          sizes: [72, 96, 120, 128, 144, 152, 167, 180, 192, 384, 512],
-        },
-      ],
-    }),
-
-    new HashedModuleIdsPlugin({
-      hashFunction: 'sha256',
-      hashDigest: 'hex',
-      hashDigestLength: 20,
+      AppCache: false,
     }),
   ],
 
   performance: {
-    assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+    assetFilter: assetFilename =>
+      !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });

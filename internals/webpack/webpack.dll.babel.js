@@ -12,7 +12,7 @@ const { join } = require('path');
 const defaults = require('lodash/defaultsDeep');
 const webpack = require('webpack'); // eslint-disable-line
 const pkg = require(join(process.cwd(), 'package.json')); // eslint-disable-line
-const { dllPlugin } = require('../config');
+const dllPlugin = require('../config').dllPlugin;
 
 if (!pkg.dllPlugin) {
   process.exit(0);
@@ -22,12 +22,8 @@ const dllConfig = defaults(pkg.dllPlugin, dllPlugin.defaults);
 const outputPath = join(process.cwd(), dllConfig.path);
 
 module.exports = require('./webpack.base.babel')({
-  mode: 'development',
   context: process.cwd(),
   entry: dllConfig.dlls ? dllConfig.dlls : dllPlugin.entry(pkg),
-  optimization: {
-    minimize: false,
-  },
   devtool: 'eval',
   output: {
     filename: '[name].dll.js',

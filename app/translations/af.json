@@ -1,0 +1,11 @@
+{
+  "app.containers.App.pageTitleTemplate": "Handelsplatform",
+  "app.containers.ClientForm.companyName.label": "Maatskappynaam",
+  "app.containers.ClientForm.companyRegistration.label": "Maatskappy Registrasie",
+  "app.containers.ClientForm.clientAddress.label": "Adres",
+  "app.containers.ClientForm.vatRegistrationNum.label": "BTW Registrasienommer",
+  "app.containers.ClientForm.customsCode.label": "Doeane-kode",
+  "app.containers.ClientForm.contactPerson.label": "Kontak persoon",
+  "app.containers.ClientForm.contactPersonEmail.label": "Kontakpersoon e-pos",
+  "app.components.NotFoundPage.header": "This is NotFoundPage component!"
+}

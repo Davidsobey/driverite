@@ -4,11 +4,13 @@
  *
  */
 
-import CHANGE_LOCALE from './constants';
+import { CHANGE_LOCALE } from './constants';
 
-export default function changeLocale(languageLocale) {
+function changeLocale(languageLocale) {
   return {
     type: CHANGE_LOCALE,
     locale: languageLocale,
   };
 }
+
+export default changeLocale;

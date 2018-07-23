@@ -1,14 +1,18 @@
 const path = require('path');
-const webpack = require('webpack'); // eslint-disable-line
+const webpack = require('webpack');// eslint-disable-line
 const webpackDevMiddleware = require('webpack-dev-middleware'); // eslint-disable-line
 const webpackHotMiddleware = require('webpack-hot-middleware'); // eslint-disable-line
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
-    logLevel: 'warn',
+    noInfo: true,
     publicPath,
     silent: true,
     stats: 'errors-only',
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000,
+    },
   });
 }
 

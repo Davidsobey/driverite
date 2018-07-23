@@ -6,6 +6,7 @@ module.exports = {
     'import/no-named-as-default-member': 0,
     'react/require-default-props': false,
     'react/forbid-prop-types': false,
+    'class-methods-use-this': 0,
   },
   env: {
     jest: true,

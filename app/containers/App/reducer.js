@@ -1,46 +1,32 @@
+import { fromJS } from 'immutable';
+import { LOCATION_CHANGE } from 'react-router-redux';
+
 /*
- * AppReducer
+ * routeReducer
  *
- * The reducer takes care of our data. Using actions, we can change our
- * application state.
- * To add a new action, add it to the switch statement in the reducer function
+ * The reducer merges route location changes into our immutable state.
+ * The change is necessitated by moving to react-router-redux@4
  *
- * Example:
- * case YOUR_ACTION_CONSTANT:
- *   return state.set('yourStateVariable', true);
  */
 
-import { fromJS } from 'immutable';
-
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
-
-// The initial state of the App
-const initialState = fromJS({
-  loading: false,
-  error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
+// Initial routing state
+const routeInitialState = fromJS({
+  location: null,
 });
 
-function appReducer(state = initialState, action) {
+/**
+ * Merge route into the global application state
+ */
+function routeReducer(state = routeInitialState, action) {
   switch (action.type) {
-    case LOAD_REPOS:
-      return state
-        .set('loading', true)
-        .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
-      return state
-        .setIn(['userData', 'repositories'], action.repos)
-        .set('loading', false)
-        .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
-      return state.set('error', action.error).set('loading', false);
+    /* istanbul ignore next */
+    case LOCATION_CHANGE:
+      return state.merge({
+        location: action.payload,
+      });
     default:
       return state;
   }
 }
 
-export default appReducer;
+export default routeReducer;

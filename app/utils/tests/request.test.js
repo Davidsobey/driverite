@@ -1,79 +1,87 @@
-/**
- * Test the request function
- */
+import { Cookies } from 'react-cookie';
+import { addSecurityHeader, addContentType } from '../request';
 
-import request from '../request';
+describe('Securing headers with addSecurityHeader util', () => {
+  const cookies = new Cookies();
+  cookies.set('jwt', '123');
+  const CORRECT_AUTH_HEADER = 'Bearer 123';
 
-describe('request', () => {
-  // Before each test, stub the fetch function
-  beforeEach(() => {
-    window.fetch = jest.fn();
-  });
-
-  describe('stubbing successful response', () => {
-    // Before each test, pretend we got a successful response
-    beforeEach(() => {
-      const res = new Response('{"hello":"world"}', {
-        status: 200,
-        headers: {
-          'Content-type': 'application/json',
-        },
-      });
-
-      window.fetch.mockReturnValue(Promise.resolve(res));
-    });
-
-    it('should format the response correctly', (done) => {
-      request('/thisurliscorrect')
-        .catch(done)
-        .then((json) => {
-          expect(json.hello).toBe('world');
-          done();
-        });
+  it('should add the security header to empty options', () => {
+    const options = {};
+    expect(addSecurityHeader(options)).toEqual({
+      headers: {
+        Authorization: CORRECT_AUTH_HEADER,
+      },
     });
   });
 
-  describe('stubbing 204 response', () => {
-    // Before each test, pretend we got a successful response
-    beforeEach(() => {
-      const res = new Response('', {
-        status: 204,
-        statusText: 'No Content',
-      });
-
-      window.fetch.mockReturnValue(Promise.resolve(res));
-    });
-
-    it('should return null on 204 response', (done) => {
-      request('/thisurliscorrect')
-        .catch(done)
-        .then((json) => {
-          expect(json).toBeNull();
-          done();
-        });
+  it('should add the security header when options are not provided', () => {
+    expect(addSecurityHeader()).toEqual({
+      headers: {
+        Authorization: CORRECT_AUTH_HEADER,
+      },
     });
   });
 
-  describe('stubbing error response', () => {
-    // Before each test, pretend we got an unsuccessful response
-    beforeEach(() => {
-      const res = new Response('', {
-        status: 404,
-        statusText: 'Not Found',
-        headers: {
-          'Content-type': 'application/json',
-        },
-      });
-
-      window.fetch.mockReturnValue(Promise.resolve(res));
+  it('should override the AuthorizationHeader when one is provided', () => {
+    const BAD_TOKEN = 'Bearer 321';
+    expect(addSecurityHeader({
+      headers: {
+        Authorization: BAD_TOKEN,
+      },
+    })).toEqual({
+      headers: {
+        Authorization: CORRECT_AUTH_HEADER,
+      },
     });
+  });
 
-    it('should catch errors', (done) => {
-      request('/thisdoesntexist').catch((err) => {
-        expect(err.response.status).toBe(404);
-        expect(err.response.statusText).toBe('Not Found');
-        done();
-      });
+  it('should override the AuthorizationHeader when one is provided but not override anything else', () => {
+    const BAD_TOKEN = 'Bearer 321';
+    expect(addSecurityHeader({
+      'Content-Type': 'application/json',
+      headers: {
+        Authorization: BAD_TOKEN,
+        SomeOtherHeader: 'test',
+      },
+    })).toEqual({
+      'Content-Type': 'application/json',
+      headers: {
+        Authorization: CORRECT_AUTH_HEADER,
+        SomeOtherHeader: 'test',
+      },
+    });
+  });
+});
+
+describe('Setting Content-Type headers with addContentType util', () => {
+  const JSON_CONTENT_TYPE = 'application/json';
+  it('should add the Content-Type header to empty options', () => {
+    const options = {};
+    expect(addContentType(options)).toEqual({
+      headers: {
+        'Content-Type': JSON_CONTENT_TYPE,
+      },
+    });
+  });
+
+  it('should add the Content-Type header when no options are provided', () => {
+    expect(addContentType()).toEqual({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  });
+
+  it('should not override the Content-Type header when one is provided', () => {
+    expect(addContentType({
+      headers: {
+        'Content-Type': 'text',
+      },
+    })).toEqual({
+      headers: {
+        'Content-Type': 'text',
+      },
     });
   });
 });

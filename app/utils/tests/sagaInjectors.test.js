@@ -68,7 +68,7 @@ describe('injectors', () => {
       expect(() => ejectSaga(1)).toThrow();
     });
 
-    it('should cancel a saga in RESTART_ON_REMOUNT mode', () => {
+    it('should cancel a saga in a RESTART_ON_REMOUNT mode', () => {
       const cancel = jest.fn();
       store.injectedSagas.test = { task: { cancel }, mode: RESTART_ON_REMOUNT };
       ejectSaga('test');
@@ -145,11 +145,19 @@ describe('injectors', () => {
     it("should validate saga's descriptor", () => {
       expect(() => injectSaga('test')).toThrow();
       expect(() => injectSaga('test', { saga: 1 })).toThrow();
-      expect(() => injectSaga('test', { saga: testSaga, mode: 'testMode' })).toThrow();
+      expect(() =>
+        injectSaga('test', { saga: testSaga, mode: 'testMode' }),
+      ).toThrow();
       expect(() => injectSaga('test', { saga: testSaga, mode: 1 })).toThrow();
-      expect(() => injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT })).not.toThrow();
-      expect(() => injectSaga('test', { saga: testSaga, mode: DAEMON })).not.toThrow();
-      expect(() => injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT })).not.toThrow();
+      expect(() =>
+        injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT }),
+      ).not.toThrow();
+      expect(() =>
+        injectSaga('test', { saga: testSaga, mode: DAEMON }),
+      ).not.toThrow();
+      expect(() =>
+        injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT }),
+      ).not.toThrow();
     });
 
     it('should pass args to saga.run', () => {
