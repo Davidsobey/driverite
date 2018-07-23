@@ -10,8 +10,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
 
-import { makeSelectCurrentUser } from 'containers/App/selectors';
-import ListItem from 'components/ListItem';
+import { makeSelectCurrentUser } from '../App/selectors';
+import ListItem from '../../components/ListItem';
 import IssueIcon from './IssueIcon';
 import IssueLink from './IssueLink';
 import RepoLink from './RepoLink';
@@ -19,12 +19,12 @@ import Wrapper from './Wrapper';
 
 export class RepoListItem extends React.PureComponent {
   render() {
-    const { item } = this.props;
+    const { item, currentUser } = this.props;
     let nameprefix = '';
 
     // If the repository is owned by a different person than we got the data for
     // it's a fork and we should show the name of the owner
-    if (item.owner.login !== this.props.currentUser) {
+    if (item.owner.login !== currentUser) {
       nameprefix = `${item.owner.login}/`;
     }
 

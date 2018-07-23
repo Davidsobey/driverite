@@ -1,9 +1,9 @@
 // Important modules this config uses
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const OfflinePlugin = require('offline-plugin');
-const { HashedModuleIdsPlugin } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
+const WebpackPwaManifest = require('webpack-pwa-manifest'); // eslint-disable-line
+const OfflinePlugin = require('offline-plugin'); // eslint-disable-line
+const { HashedModuleIdsPlugin } = require('webpack'); // eslint-disable-line
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -91,7 +91,6 @@ module.exports = require('./webpack.base.babel')({
   ],
 
   performance: {
-    assetFilter: assetFilename =>
-      !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+    assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });

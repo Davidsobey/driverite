@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ListItem from 'components/ListItem';
+import ListItem from '../../ListItem';
 import List from '../index';
 
 describe('<List />', () => {
@@ -13,7 +13,11 @@ describe('<List />', () => {
   it('should pass all items props to rendered component', () => {
     const items = [{ id: 1, name: 'Hello' }, { id: 2, name: 'World' }];
 
-    const component = ({ item }) => <ListItem>{item.name}</ListItem>; // eslint-disable-line react/prop-types
+    const component = ({ item }) => (// eslint-disable-line react/prop-types
+      <ListItem>
+        {item.name}
+      </ListItem>
+    ); // eslint-disable-line react/prop-types
 
     const renderedComponent = shallow(
       <List items={items} component={component} />,

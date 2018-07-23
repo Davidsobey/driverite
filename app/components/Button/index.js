@@ -14,23 +14,30 @@ import StyledButton from './StyledButton';
 import Wrapper from './Wrapper';
 
 function Button(props) {
+  const {
+    href, onClick, children, handleRoute,
+  } = props;
   // Render an anchor tag
   let button = (
-    <A href={props.href} onClick={props.onClick}>
-      {Children.toArray(props.children)}
+    <A href={href} onClick={onClick}>
+      {Children.toArray(children)}
     </A>
   );
 
   // If the Button has a handleRoute prop, we want to render a button
-  if (props.handleRoute) {
+  if (handleRoute) {
     button = (
-      <StyledButton onClick={props.handleRoute}>
-        {Children.toArray(props.children)}
+      <StyledButton onClick={handleRoute}>
+        {Children.toArray(children)}
       </StyledButton>
     );
   }
 
-  return <Wrapper>{button}</Wrapper>;
+  return (
+    <Wrapper>
+      {button}
+    </Wrapper>
+  );
 }
 
 Button.propTypes = {

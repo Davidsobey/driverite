@@ -11,17 +11,24 @@ import Select from './Select';
 import ToggleOption from '../ToggleOption';
 
 function Toggle(props) {
-  let content = <option>--</option>;
+  const {
+    values, messages, onToggle, value,
+  } = props;
+  let content = (
+    <option>
+--
+    </option>
+  );
 
   // If we have items, render them
-  if (props.values) {
-    content = props.values.map(value => (
-      <ToggleOption key={value} value={value} message={props.messages[value]} />
+  if (values) {
+    content = values.map(val => (
+      <ToggleOption key={val} value={val} message={messages[value]} />
     ));
   }
 
   return (
-    <Select value={props.value} onChange={props.onToggle}>
+    <Select value={value} onChange={onToggle}>
       {content}
     </Select>
   );

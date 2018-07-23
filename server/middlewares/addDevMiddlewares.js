@@ -1,7 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpack = require('webpack'); // eslint-disable-line
+const webpackDevMiddleware = require('webpack-dev-middleware'); // eslint-disable-line
+const webpackHotMiddleware = require('webpack-hot-middleware'); // eslint-disable-line
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {

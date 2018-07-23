@@ -5,9 +5,12 @@ import Item from './Item';
 import Wrapper from './Wrapper';
 
 function ListItem(props) {
+  const { item } = props;
   return (
     <Wrapper>
-      <Item>{props.item}</Item>
+      <Item>
+        {item}
+      </Item>
     </Wrapper>
   );
 }

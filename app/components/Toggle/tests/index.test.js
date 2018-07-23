@@ -32,7 +32,7 @@ describe('<Toggle />', () => {
   });
   it('should not have ToggleOptions if props.values is not defined', () => {
     const renderedComponent = shallow(<Toggle />);
-    expect(renderedComponent.contains(<option>--</option>)).toBe(true);
+    expect(renderedComponent.contains(<option>--</option>)).toBe(true); // eslint-disable-line
     expect(renderedComponent.find('option').length).toBe(1);
   });
 });

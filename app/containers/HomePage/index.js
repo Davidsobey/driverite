@@ -12,15 +12,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
+import H2 from '../../components/H2';
+import ReposList from '../../components/ReposList';
 import {
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
-} from 'containers/App/selectors';
-import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
+} from '../App/selectors';
+import injectSaga from '../../utils/injectSaga';
+import injectReducer from '../../utils/injectReducer';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
@@ -28,7 +28,7 @@ import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
+import changeUsername from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -39,13 +39,21 @@ export class HomePage extends React.PureComponent {
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
+    const { username, onSubmitForm } = this.props;
+    if (username && username.trim().length > 0) {
+      onSubmitForm();
     }
   }
 
   render() {
-    const { loading, error, repos } = this.props;
+    const {
+      loading,
+      error,
+      repos,
+      onSubmitForm,
+      username,
+      onChangeUsername,
+    } = this.props;
     const reposListProps = {
       loading,
       error,
@@ -55,7 +63,9 @@ export class HomePage extends React.PureComponent {
     return (
       <article>
         <Helmet>
-          <title>Home Page</title>
+          <title>
+Home Page
+          </title>
           <meta
             name="description"
             content="A React.js Boilerplate application homepage"
@@ -74,20 +84,18 @@ export class HomePage extends React.PureComponent {
             <H2>
               <FormattedMessage {...messages.trymeHeader} />
             </H2>
-            <Form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <AtPrefix>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </AtPrefix>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
-                />
-              </label>
+            <Form onSubmit={onSubmitForm}>
+              <FormattedMessage {...messages.trymeMessage} />
+              <AtPrefix>
+                <FormattedMessage {...messages.trymeAtPrefix} />
+              </AtPrefix>
+              <Input
+                id="username"
+                type="text"
+                placeholder="mxstbr"
+                value={username}
+                onChange={onChangeUsername}
+              />
             </Form>
             <ReposList {...reposListProps} />
           </Section>
@@ -109,7 +117,7 @@ HomePage.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: evt => {
+    onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },

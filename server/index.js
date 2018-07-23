@@ -6,12 +6,13 @@ const logger = require('./logger');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
+
 const isDev = process.env.NODE_ENV !== 'production';
-const ngrok =
-  (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
-    ? require('ngrok')
-    : false;
-const { resolve } = require('path');
+const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
+    ? require('ngrok') // eslint-disable-line
+  : false;
+const { resolve } = require('path'); // eslint-disable-line
+
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
@@ -29,7 +30,7 @@ const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
 // Start your app.
-app.listen(port, host, async err => {
+app.listen(port, host, async (err) => {
   if (err) {
     return logger.error(err.message);
   }

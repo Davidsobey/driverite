@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
 
 import LocaleToggle, { mapDispatchToProps } from '../index';
-import { changeLocale } from '../../LanguageProvider/actions';
+import changeLocale from '../../LanguageProvider/actions';
 import LanguageProvider from '../../LanguageProvider';
 
 import configureStore from '../../../configureStore';
@@ -36,7 +36,8 @@ describe('<LocaleToggle />', () => {
         </LanguageProvider>
       </Provider>,
     );
-    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(
+    /* eslint-disable react/jsx-one-expression-per-line */
+    expect(renderedComponent.contains(<option value="en"> en </option>)).toBe(
       true,
     );
   });

@@ -1,3 +1,19 @@
 module.exports = {
-    "extends": "airbnb"
+  extends: 'airbnb',
+  rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'import/no-named-as-default': 0,
+    'import/no-named-as-default-member': 0,
+    'react/require-default-props': false,
+    'react/forbid-prop-types': false,
+  },
+  env: {
+    jest: true,
+    browser: true,
+    node: true,
+  },
+  globals: {
+    document: false,
+  },
+  parser: 'babel-eslint',
 };

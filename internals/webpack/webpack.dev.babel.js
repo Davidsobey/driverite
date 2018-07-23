@@ -4,13 +4,14 @@
 
 const path = require('path');
 const fs = require('fs');
-const glob = require('glob');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+const glob = require('glob'); // eslint-disable-line
+const webpack = require('webpack'); // eslint-disable-line
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin'); // eslint-disable-line
+const CircularDependencyPlugin = require('circular-dependency-plugin'); // eslint-disable-line
 const logger = require('../../server/logger');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+
+const pkg = require(path.resolve(process.cwd(), 'package.json')); // eslint-disable-line
 const { dllPlugin } = pkg;
 
 const plugins = [
@@ -26,7 +27,7 @@ const plugins = [
 ];
 
 if (dllPlugin) {
-  glob.sync(`${dllPlugin.path}/*.dll.js`).forEach(dllPath => {
+  glob.sync(`${dllPlugin.path}/*.dll.js`).forEach((dllPath) => {
     plugins.push(
       new AddAssetHtmlPlugin({
         filepath: dllPath,
@@ -110,17 +111,15 @@ function dependencyHandlers() {
     return [
       new webpack.DllReferencePlugin({
         context: process.cwd(),
-        manifest: require(manifestPath), // eslint-disable-line global-require
+        manifest: require(manifestPath), // eslint-disable-line
       }),
     ];
   }
 
   // If DLLs are explicitly defined, we automatically create a DLLReferencePlugin for each of them.
-  const dllManifests = Object.keys(dllPlugin.dlls).map(name =>
-    path.join(dllPath, `/${name}.json`),
-  );
+  const dllManifests = Object.keys(dllPlugin.dlls).map(name => path.join(dllPath, `/${name}.json`));
 
-  return dllManifests.map(manifestPath => {
+  return dllManifests.map((manifestPath) => {
     if (!fs.existsSync(path)) {
       if (!fs.existsSync(manifestPath)) {
         logger.error(
@@ -137,7 +136,7 @@ function dependencyHandlers() {
 
     return new webpack.DllReferencePlugin({
       context: process.cwd(),
-      manifest: require(manifestPath), // eslint-disable-line global-require
+      manifest: require(manifestPath), // eslint-disable-line
     });
   });
 }

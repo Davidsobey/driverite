@@ -12,7 +12,7 @@ describe('<H3 />', () => {
 
   it('should render its text', () => {
     const children = 'Text';
-    const renderedComponent = shallow(<H3>{children}</H3>);
+    const renderedComponent = shallow(<H3>{children}</H3>); //eslint-disable-line
     expect(renderedComponent.contains(children)).toBe(true);
   });
 });

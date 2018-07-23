@@ -2,9 +2,9 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import RepoListItem from 'containers/RepoListItem';
-import List from 'components/List';
-import LoadingIndicator from 'components/LoadingIndicator';
+import LoadingIndicator from '../../LoadingIndicator';
+import RepoListItem from '../../../containers/RepoListItem';
+import List from '../../List';
 import ReposList from '../index';
 
 describe('<ReposList />', () => {

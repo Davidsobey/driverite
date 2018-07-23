@@ -5,11 +5,11 @@ import Ul from './Ul';
 import Wrapper from './Wrapper';
 
 function List(props) {
-  const ComponentToRender = props.component;
+  const { ComponentToRender, items } = props;
   let content = <div />;
 
   // If we have items, render them
-  if (props.items) {
+  if (items) {
     content = props.items.map(item => (
       <ComponentToRender key={`item-${item.id}`} item={item} />
     ));
@@ -20,13 +20,15 @@ function List(props) {
 
   return (
     <Wrapper>
-      <Ul>{content}</Ul>
+      <Ul>
+        {content}
+      </Ul>
     </Wrapper>
   );
 }
 
 List.propTypes = {
-  component: PropTypes.func.isRequired,
+  ComponentToRender: PropTypes.object,
   items: PropTypes.array,
 };
 
