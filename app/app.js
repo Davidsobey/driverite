@@ -11,9 +11,6 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import { CookiesProvider } from 'react-cookie';
 import 'sanitize.css/sanitize.css';
 
-// Import Language Provider
-import LanguageProvider from '../app/containers/LanguageProvider';
-
 // Import root app
 import App from '../app/containers/App';
 
@@ -39,9 +36,6 @@ import 'file-loader?name=[name].[ext]!./.htaccess';
 // Configure redux store
 import configureStore from './configureStore';
 
-// Import i18n messages
-import { translationMessages } from './i18n';
-
 import { loadDispatcher } from './utils/request';
 
 const roboto = new FontFaceObserver('Roboto');
@@ -58,18 +52,16 @@ const MOUNT_NODE = document.getElementById('app');
 
 loadDispatcher(store.dispatch);
 
-const render = (messages) => {
+const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <CookiesProvider>
-            <MuiThemeProvider theme={muiTheme}>
-              <App />
-            </MuiThemeProvider>
-          </CookiesProvider>
-        </ConnectedRouter>
-      </LanguageProvider>
+      <ConnectedRouter history={history}>
+        <CookiesProvider>
+          <MuiThemeProvider theme={muiTheme}>
+            <App />
+          </MuiThemeProvider>
+        </CookiesProvider>
+      </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
   );
@@ -79,32 +71,12 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./i18n', 'containers/App'], () => {
+  module.hot.accept(['containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    render(translationMessages);
   });
 }
 
-// Chunked polyfill for browsers without Intl support
-if (!window.Intl) {
-  new Promise((resolve) => {
-    resolve(import('intl'));
-  })
-    .then(() =>
-      Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/af.js'),
-        import('intl/locale-data/jsonp/zu.js'),
-        // import('intl/locale-data/jsonp/xh.js'),
-      ]),
-    )
-    .then(() => render(translationMessages))
-    .catch((err) => {
-      throw err;
-    });
-} else {
-  render(translationMessages);
-}
+render();
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,

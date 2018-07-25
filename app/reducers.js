@@ -6,7 +6,6 @@ import { combineReducers } from 'redux-immutable';
 
 // 3rd Party Reducers
 import { reducer as form } from 'redux-form/immutable';
-import language from './containers/LanguageProvider/reducer';
 import route from './containers/App/reducer';
 
 // App Reducers
@@ -18,7 +17,6 @@ import user from './components/User/reducer';
 export default function createReducer(injectedReducers) {
   return combineReducers({
     route,
-    language,
     form,
     user,
     ...injectedReducers,

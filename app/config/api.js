@@ -5,9 +5,7 @@
 
 class API {
   // DOMAIN
-  // http://127.0.0.1:8080
-  // http://18.232.178.141
-  DOMAIN = 'http://127.0.0.1:8080';
+  DOMAIN = 'https://crescenttesting.azurewebsites.net/api';
   BASE = '/ql/data/?info=';
   // Login
   LOGIN = '/login';

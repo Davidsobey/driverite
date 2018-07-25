@@ -10,7 +10,6 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { submit } from 'redux-form';
 import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
 import FormControl from 'material-ui/Form/FormControl';
 import IconButton from 'material-ui/IconButton';
 import { TextField } from 'redux-form-material-ui';
@@ -31,16 +30,14 @@ import {
   LoginInnerButtonWrapper,
   LoginWrapper,
 } from './styles';
-import messages from './messages';
 
 /* eslint-disable-line react/prefer-stateless-function */
 class LoginForm extends React.Component {
-  required = value =>
-    (value ? undefined : this.props.intl.formatMessage(messages.requiredError));
+  required = value => (value ? undefined : 'Required');
 
   validEmail = value =>
     (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-      ? this.props.intl.formatMessage(messages.emailError)
+      ? 'Invalid email address'
       : undefined);
 
   defaultSubmit = (values) => {
@@ -124,7 +121,6 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
   onLoginSubmit: PropTypes.func.isRequired,
 };
 
@@ -134,8 +130,8 @@ const withForm = reduxForm(
   {
     form: FORM_NAME,
     initialValues: {
-      username: 'lecton.ramasila@standardbank.co.za',
-      password: 'maria',
+      username: 'davidsobey@live.co.uk',
+      password: 'Sobey2503',
     },
   },
   LoginForm,
@@ -158,5 +154,4 @@ export default compose(
   withSaga,
   withConnect,
   withForm,
-  injectIntl,
 )(LoginForm);

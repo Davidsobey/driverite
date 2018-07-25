@@ -11,11 +11,9 @@ import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { injectIntl } from 'react-intl';
 // Components
 import Logo from '../../../images/logo.png';
 
-import messages from './messages';
 import LoginForm from '../LoginForm';
 import { LoginWrapper } from './styles';
 import AuthMiddleware from '../../../middlewares/AuthMiddleware';
@@ -35,17 +33,13 @@ class LoginPage extends React.PureComponent {
   }
 
   render() {
-    const {
-      intl: { formatMessage },
-    } = this.props;
-
     return (
       <LoginWrapper>
-        <Helmet title={formatMessage(messages.pageTitle)} />
-        <img src={Logo} alt={formatMessage(messages.logoDescription)} />
+        <Helmet title={'Login'} />
+        <img src={Logo} alt="Drive Rite" />
         <RegularCard
           cardTitle="Login"
-          cardSubtitle="Login using you NT Username and Password"
+          cardSubtitle="Login using your Email and Password"
         >
           <LoginForm />
         </RegularCard>
@@ -55,8 +49,7 @@ class LoginPage extends React.PureComponent {
 }
 
 LoginPage.propTypes = {
-  intl: PropTypes.object,
   history: PropTypes.object,
 };
 
-export default compose(injectIntl)(LoginPage);
+export default compose(LoginPage);

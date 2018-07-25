@@ -43,7 +43,7 @@ class AuthMiddleware extends React.Component {
 
   login(username, password) {
     // Get a token from api server using the fetch api
-    return this.fetch(`${this.domain}/login`, {
+    return this.fetch(`${this.domain}/Auth`, {
       method: 'POST',
       body: JSON.stringify({
         username,
