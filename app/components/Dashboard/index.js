@@ -12,9 +12,6 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { withStyles } from 'material-ui/styles';
 import HomeIcon from 'material-ui-icons/Home';
-import Add from 'material-ui-icons/Add';
-import List from 'material-ui-icons/List';
-import PersonAdd from 'material-ui-icons/PersonAdd';
 
 import injectSaga from '../../utils/injectSaga';
 import injectReducer from '../../utils/injectReducer';

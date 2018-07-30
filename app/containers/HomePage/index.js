@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import { push } from 'react-router-redux';
 import { Link } from 'react-router-dom';
 
 import { StyledAppBar, StyledToolBar } from './style';
@@ -21,10 +20,6 @@ const styles = {
 
 // eslint-disable-next-line
 class SimpleAppBar extends React.Component {
-  submit() {
-    console.log('test');
-    push('/login');
-  }
   render = () => {
     const { classes } = this.props;
     return (
