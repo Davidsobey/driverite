@@ -1,5 +1,5 @@
 import { injectGlobal } from 'styled-components';
-
+import photo from '../images/dark_mosaic.png';
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   html,
@@ -11,14 +11,17 @@ injectGlobal`
 
   body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
+    background-image: url(${photo});
+    background-repeat: repeat;
+
   }
 
   #app {
     min-height: 100%;
     min-width: 100%;
     display: flex;
-    background: #0033aa; /* Old browsers */
-    background: linear-gradient(135deg, #0033aa 0%,#3366cc 21%,#00aadd 51%,#3366cc 79%,#3366cc 79%,#0033aa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* background: #0033aa; Old browsers */
+    /* background: linear-gradient(135deg, #0033aa 0%,#3366cc 21%,#00aadd 51%,#3366cc 79%,#3366cc 79%,#0033aa 100%); W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
   a{
     text-decoration: none;

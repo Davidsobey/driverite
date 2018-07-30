@@ -124,25 +124,7 @@ const styles = theme => ({
 });
 
 const gradManagerRoutes = [
-  { id: 1, description: 'Home', icon: HomeIcon, route: ROUTES.GM_HOME },
-  {
-    id: 2,
-    description: 'Create Rotation',
-    icon: Add,
-    route: ROUTES.GM_CREATE_ROTATION,
-  },
-  {
-    id: 3,
-    description: 'Create New Manager',
-    icon: PersonAdd,
-    route: ROUTES.GM_CREATE_MANAGER,
-  },
-  {
-    id: 4,
-    description: 'View All Rotations',
-    icon: List,
-    route: ROUTES.GM_VIEW_ROTATIONS,
-  },
+  { id: 1, description: 'Home', icon: HomeIcon, route: ROUTES.HOME },
 ];
 
 export class Dashboard extends React.Component {

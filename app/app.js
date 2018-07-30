@@ -21,14 +21,14 @@ import muiTheme from '../app/styles/material-theme';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable */
-import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
-import '!file-loader?name=[name].[ext]!./images/favicons/favicon-16x16.png';
-import '!file-loader?name=[name].[ext]!./images/favicons/favicon-32x32.png';
-import '!file-loader?name=[name].[ext]!./images/favicons/mstile-150x150.png';
-import '!file-loader?name=[name].[ext]!./images/favicons/safari-pinned-tab.svg';
-import '!file-loader?name=[name].[ext]!./images/favicons/android-chrome-192x192.png';
-import '!file-loader?name=[name].[ext]!./images/favicons/android-chrome-512x512.png';
-import '!file-loader?name=[name].[ext]!./images/favicons/apple-touch-icon.png';
+// import '!file-loader?name=[name].[ext]!./images/favicons/favicon.ico';
+// import '!file-loader?name=[name].[ext]!./images/favicons/favicon-16x16.png';
+// import '!file-loader?name=[name].[ext]!./images/favicons/favicon-32x32.png';
+// import '!file-loader?name=[name].[ext]!./images/favicons/mstile-150x150.png';
+// import '!file-loader?name=[name].[ext]!./images/favicons/safari-pinned-tab.svg';
+// import '!file-loader?name=[name].[ext]!./images/favicons/android-chrome-192x192.png';
+// import '!file-loader?name=[name].[ext]!./images/favicons/android-chrome-512x512.png';
+// import '!file-loader?name=[name].[ext]!./images/favicons/apple-touch-icon.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
 /* eslint-enable */

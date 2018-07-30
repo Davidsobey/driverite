@@ -28,7 +28,8 @@ function App() {
     <div className="content">
       <Alert />
       <Switch>
-        <Route exact path="/" component={LoginPage} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path={ROUTES.LOGIN} component={LoginPage} />
         <Dashboard>
           <Route exact path={ROUTES.HOME} component={withAuth(HomePage)} />
         </Dashboard>
