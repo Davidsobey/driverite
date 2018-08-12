@@ -8,7 +8,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import Typography from 'material-ui/Typography';
 import Menu from 'material-ui/Menu';
 import PowerSettingsNew from 'material-ui-icons/PowerSettingsNew';
-import Logo from '../../images/logo.png';
+import Logo from '../../images/logo2.png';
 
 const DashboardHeader = ({
   classes,

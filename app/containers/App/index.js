@@ -22,6 +22,8 @@ import * as ROUTES from './routes';
 
 import LoginPage from '../Login/LoginPage/index';
 import HomePage from '../HomePage/index';
+import CarView from '../Car/View/index';
+
 
 function App() {
   return (
@@ -32,7 +34,7 @@ function App() {
         <Route exact path={ROUTES.LOGIN} component={LoginPage} />
         <Dashboard>
           <Route exact path={ROUTES.HOME} component={HomePage} />
-          <Route exact path={ROUTES.CARLIST} component={HomePage} />
+          <Route exact path={ROUTES.CARLIST} component={CarView} />
           <Route exact path={ROUTES.USERLIST} component={HomePage} />
           <Route exact path={ROUTES.REVIEWLIST} component={HomePage} />
         </Dashboard>

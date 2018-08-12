@@ -21,11 +21,8 @@ const styles = () => ({
   },
 });
 
-function loadRows(obj, arr) {
-  arr.push(obj.Name);
-  arr.push(obj.Area);
-  arr.push(obj.Description);
-
+function loadRows(obj) {
+  const arr = Object.keys(obj).map(key => [Number(key), obj[key]]);
   return arr;
 }
 
@@ -68,7 +65,7 @@ class BasicTable extends React.Component {
           <TableBody>
             {data.map((obj) => {
               const arr = [];
-              loadRows(obj, arr);
+              loadRows(obj);
               return (
                 <TableRow key={obj.id}>
                   {arr.map((value) => {

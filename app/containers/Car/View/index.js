@@ -5,110 +5,83 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import CircularProgress from 'material-ui/Progress/CircularProgress';
+import Button from 'material-ui/Button';
 
-import { injectSaga, injectReducer } from 'utils';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
-import Table from '../../../components/Table/index';
 import RegularCard from '../../../components/Card';
 
 // import selectAllRotations from './selectors';
-import { getRotation, getAllRotations, deleteRotation } from './actions';
-import reducer from './reducer';
-import saga from './saga';
+// import { getRotation, getAllRotations, deleteRotation } from './actions';
+// import reducer from './reducer';
+// import saga from './saga';
 
-const header = ['Rotation Team', 'Rotation Area', 'Description', ''];
+// const header = ['Rotation Team', 'Rotation Area', 'Description', ''];
 
-export class Rotation extends React.Component {
-  // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.getAllRotations();
-  }
-
-  handleEdit(rotationID) {
-    this.props.getRotation(rotationID);
-  }
-
-  handleDelete(rotationID) {
-    this.props.deleteRotation(rotationID);
-  }
-
-  render() {
-    const { rotations } = this.props;
-
-    return (
-      <RegularCard
-        cardTitle="Rotations"
-        cardSubtitle="List of rotations that are currently available."
-      >
-        <div className="fullHeight">
-          {Array.isArray(rotations.rotations) ? (
-            <Table
-              header={header}
-              data={rotations.rotations}
-              del="Rotation"
-              edit="/rotation/edit"
-              handleEdit={this.handleEdit}
-              handleDelete={this.handleDelete}
-            />
-          ) : (
-            <div className="center">
-              <CircularProgress color="secondary" />
-            </div>
-          )}
-        </div>
-      </RegularCard>
-    );
-  }
-}
-
-const withForm = reduxForm(
+const datas = [
+  { name: 1, description: 'a', cpdHours: 'b' },
+  { name: 2, description: 'a', cpdHours: 'b' },
+];
+const columns = [
   {
-    form: 'homePage',
+    Header: 'Name',
+    accessor: 'name',
   },
-  Rotation,
-);
-
-Rotation.propTypes = {
-  rotations: PropTypes.object,
-  getRotation: PropTypes.func,
-  getAllRotations: PropTypes.func,
-  deleteRotation: PropTypes.func,
-};
-
-const mapStateToProps = state => ({
-  rotations: state.get('rotations'),
-});
-
-function mapDispatchToProps(dispatch) {
-  return {
-    getAllRotations: () => dispatch(getAllRotations()),
-    getRotation: rotationID => dispatch(getRotation(rotationID)),
-    deleteRotation: rotationID => dispatch(deleteRotation(rotationID)),
-  };
+  {
+    Header: 'Description',
+    accessor: 'description',
+  },
+  {
+    Header: 'CPD Hours',
+    accessor: 'cpdHours',
+  },
+  // {
+  //   Header: 'Edit/Delete',
+  //   accessor: 'edit/delete',
+  //   Filter: <div />,
+  //   Cell: row => (
+  //     <div>
+  //       <Tooltip id="tooltip-delete" title="Edit">
+  //         <IconButton
+  //           aria-label="Edit"
+  //           onClick={() => this.handleEdit(row.original)}
+  //         >
+  //           <StyledEdit />
+  //         </IconButton>
+  //       </Tooltip>
+  //       <Tooltip id="tooltip-delete" title="Delete">
+  //         <IconButton
+  //           aria-label="Delete"
+  //           onClick={() => this.handleDelete(row.original)}
+  //         >
+  //           <StyledDelete />
+  //         </IconButton>
+  //       </Tooltip>
+  //     </div>
+  //   ),
+  // },
+];
+function Rotation() {
+  return (
+    <RegularCard
+      cardTitle="Cars"
+      cardSubtitle="List of Cars that have been added to the Drive Rite Database."
+    >
+      <div>
+        <div className="content end">
+          <Button> Create New Car</Button>
+        </div>
+        <ReactTable
+          columns={columns}
+          data={datas}
+          filterable
+          defaultPageSize={10}
+          className="-striped -highlight"
+        />
+      </div>
+    </RegularCard>
+  );
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-const withReducer = injectReducer({ key: 'rotations', reducer });
-const withSaga = injectSaga({ key: 'rotations', saga });
-
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-  withForm,
-)(Rotation);
+export default Rotation;

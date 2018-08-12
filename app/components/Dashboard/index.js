@@ -95,7 +95,7 @@ const styles = theme => ({
     padding: '12.2px 8px',
     color: 'white',
     fontSize: '25px',
-    backgroundColor: '#616161',
+    backgroundColor: '#000000',
   },
   content: {
     width: '100%',
