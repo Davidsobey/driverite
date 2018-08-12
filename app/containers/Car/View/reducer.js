@@ -27,8 +27,8 @@ function rotationReducer(state = initialState, action) {
     case ACTIONS.DELETE_ROTATIONS:
       return {
         ...state,
-        rotations: state.rotations.filter((obj) =>
-          filterById(obj.id, action.payload)
+        rotations: state.rotations.filter(obj =>
+          filterById(obj.id, action.payload),
         ),
       };
     case ACTIONS.GET_ROTATION:

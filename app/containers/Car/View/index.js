@@ -11,8 +11,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import CircularProgress from 'material-ui/Progress/CircularProgress';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
+import { injectSaga, injectReducer } from 'utils';
 
 import Table from '../../../components/Table/index';
 import RegularCard from '../../../components/Card';
@@ -77,7 +76,7 @@ const withForm = reduxForm(
   {
     form: 'homePage',
   },
-  Rotation
+  Rotation,
 );
 
 Rotation.propTypes = {
@@ -87,21 +86,29 @@ Rotation.propTypes = {
   deleteRotation: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   rotations: state.get('rotations'),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     getAllRotations: () => dispatch(getAllRotations()),
-    getRotation: (rotationID) => dispatch(getRotation(rotationID)),
-    deleteRotation: (rotationID) => dispatch(deleteRotation(rotationID)),
+    getRotation: rotationID => dispatch(getRotation(rotationID)),
+    deleteRotation: rotationID => dispatch(deleteRotation(rotationID)),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withReducer = injectReducer({ key: 'rotations', reducer });
 const withSaga = injectSaga({ key: 'rotations', saga });
 
-export default compose(withReducer, withSaga, withConnect, withForm)(Rotation);
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+  withForm,
+)(Rotation);

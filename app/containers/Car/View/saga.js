@@ -5,7 +5,7 @@
 // import jwtDecode from 'jwt-decode';
 import { put, takeLatest } from 'redux-saga/effects';
 
-import { error, success } from 'components/Alert/actions';
+import { error, success } from '../../../components/Alert/actions';
 import * as ACTIONS from './constants';
 import { loadAllRotations } from './actions';
 import NetworkHandler from '../../../net/NetworkHandler';
@@ -21,7 +21,7 @@ function* getAllRotations() {
     yield put(
       error({
         message: `Unable to load rotations, please try again.${errorMsg}`,
-      })
+      }),
     );
   }
 }
@@ -34,13 +34,13 @@ function* deleteRotation(action) {
     yield put(
       success({
         message: `Rotation ${val} deleted `,
-      })
+      }),
     );
   } catch (errorMsg) {
     yield put(
       error({
         message: `Unable to delete rotations, please try again.${errorMsg}`,
-      })
+      }),
     );
   }
 }
