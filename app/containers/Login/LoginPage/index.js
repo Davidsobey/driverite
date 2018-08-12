@@ -36,7 +36,7 @@ class LoginPage extends React.PureComponent {
     return (
       <LoginWrapper>
         <Helmet title={'Login'} />
-        <img src={Logo} alt="Drive Rite" />
+        <img className="content" src={Logo} alt="Drive Rite" />
         <RegularCard
           cardTitle="Login"
           cardSubtitle="Login using your Email and Password"

@@ -12,6 +12,9 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { withStyles } from 'material-ui/styles';
 import HomeIcon from 'material-ui-icons/Home';
+import CarIcon from 'material-ui-icons/DriveEta';
+import FaceIcon from 'material-ui-icons/Face';
+import ReviewIcon from 'material-ui-icons/RateReview';
 
 import injectSaga from '../../utils/injectSaga';
 import injectReducer from '../../utils/injectReducer';
@@ -92,7 +95,7 @@ const styles = theme => ({
     padding: '12.2px 8px',
     color: 'white',
     fontSize: '25px',
-    backgroundColor: '#0033aa',
+    backgroundColor: '#616161',
   },
   content: {
     width: '100%',
@@ -120,10 +123,12 @@ const styles = theme => ({
   },
 });
 
-const gradManagerRoutes = [
+const routes = [
   { id: 1, description: 'Home', icon: HomeIcon, route: ROUTES.HOME },
+  { id: 2, description: 'User', icon: FaceIcon, route: ROUTES.USERLIST },
+  { id: 3, description: 'Car', icon: CarIcon, route: ROUTES.CARLIST },
+  { id: 4, description: 'Advert/Review', icon: ReviewIcon, route: ROUTES.REVIEWLIST },
 ];
-
 export class Dashboard extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   state = {
@@ -175,11 +180,7 @@ export class Dashboard extends React.Component {
             handleClose={this.handleClose}
             handleLogout={this.handleLogout}
           />
-          <DrawerMenu
-            menuItems={gradManagerRoutes}
-            classes={classes}
-            open={open}
-          />
+          <DrawerMenu menuItems={routes} classes={classes} open={open} />
           <main
             className={`${classes.content} ${
               open ? classes.contentMenuOpen : classes.contentMenuClosed

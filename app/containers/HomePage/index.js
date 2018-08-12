@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 
 import { StyledAppBar, StyledToolBar } from './style';
-import Logo from '../../images/logo-2.png';
+import Logo from '../../images/logo2.png';
 
 const styles = {
   root: {
