@@ -48,6 +48,14 @@ injectGlobal`
     margin: auto !important;
   }
 
+  .flex-container{
+    display: flex  
+  }
+
+  .justify-content{
+    justify-content: space-between
+  } 
+  
   body.fontLoaded {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
