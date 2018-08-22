@@ -127,7 +127,12 @@ const routes = [
   { id: 1, description: 'Home', icon: HomeIcon, route: ROUTES.HOME },
   { id: 2, description: 'User', icon: FaceIcon, route: ROUTES.USERLIST },
   { id: 3, description: 'Car', icon: CarIcon, route: ROUTES.CARLIST },
-  { id: 4, description: 'Advert/Review', icon: ReviewIcon, route: ROUTES.REVIEWLIST },
+  {
+    id: 4,
+    description: 'Advert/Review',
+    icon: ReviewIcon,
+    route: ROUTES.REVIEWLIST,
+  },
 ];
 export class Dashboard extends React.Component {
   // eslint-disable-line react/prefer-stateless-function

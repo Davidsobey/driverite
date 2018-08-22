@@ -39,12 +39,14 @@ class CarView extends React.Component {
     this.child.handleOpen();
   };
 
+  /* eslint-disable */
   confirmDelete = obj => () => {
     // this.props.dispatch(ClientActions.deleteClient(obj.id));
     this.child.handleClose();
   };
 
-  handleEdit = (editObj) => {
+  /* eslint-disable */
+  handleEdit = editObj => {
     // this.props.dispatch(ClientActions.loadClient(editObj.id));
     this.props.history.push('/car/edit');
   };
