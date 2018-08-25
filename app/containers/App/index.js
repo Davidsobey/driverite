@@ -18,11 +18,12 @@ import Alert from '../../components/Alert';
 // import NotFoundPage from 'containers/NotFoundPage/index';
 import Dashboard from '../../components/Dashboard';
 // import withAuth from '../../middlewares/withAuth';
-import * as ROUTES from './routes';
+import * as ROUTES from '../../config/routes';
 
 import LoginPage from '../Login/LoginPage/index';
 import HomePage from '../HomePage/index';
 import CarView from '../Car/View/index';
+import EmployeeView from '../Employee/View/index';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
         <Dashboard>
           <Route exact path={ROUTES.HOME} component={HomePage} />
           <Route exact path={ROUTES.CARLIST} component={CarView} />
-          <Route exact path={ROUTES.USERLIST} component={HomePage} />
+          <Route exact path={ROUTES.EMPLOYEELIST} component={EmployeeView} />
           <Route exact path={ROUTES.REVIEWLIST} component={HomePage} />
         </Dashboard>
       </Switch>

@@ -8,7 +8,7 @@ import { push } from 'react-router-redux';
 import { put, takeLatest } from 'redux-saga/effects';
 import { error, success } from '../../components/Alert/actions';
 
-import * as ROUTES from '../../containers/App/routes';
+import * as ROUTES from '../../config/routes';
 import * as ACTIONS from './constants';
 // import { loadDecodedUser } from './actions';
 import AuthMiddleware from '../../middlewares/AuthMiddleware';

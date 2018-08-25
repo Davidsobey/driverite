@@ -22,7 +22,7 @@ import injectReducer from '../../utils/injectReducer';
 import reducer from '../User/reducer';
 import saga from '../User/saga';
 
-import * as ROUTES from '../../containers/App/routes';
+import * as ROUTES from '../../config/routes';
 import { logout as logoutUser } from '../../components/User/actions';
 
 import DashboardHeader from './DashboardHeader';
@@ -125,7 +125,7 @@ const styles = theme => ({
 
 const routes = [
   { id: 1, description: 'Home', icon: HomeIcon, route: ROUTES.HOME },
-  { id: 2, description: 'User', icon: FaceIcon, route: ROUTES.USERLIST },
+  { id: 2, description: 'Employee', icon: FaceIcon, route: ROUTES.EMPLOYEELIST },
   { id: 3, description: 'Car', icon: CarIcon, route: ROUTES.CARLIST },
   {
     id: 4,

@@ -6,29 +6,30 @@
 
 import * as ACTIONS from './constants';
 
-export function getRotation(rotationId) {
+// export function getCar(carId) {
+//   return {
+//     type: ACTIONS.GET_CAR,
+//     payload: carId,
+//   };
+// }
+
+// eslint-disable-next-line
+export function loadAllCarsRequest() {
   return {
-    type: ACTIONS.GET_ROTATION,
-    payload: rotationId,
+    type: ACTIONS.GET_ALL_CARS_REQUEST,
   };
 }
 
-export function loadAllRotations(rotationsArray) {
+// eslint-disable-next-line
+export function loadAllCarsSuccess(cars) {
   return {
-    type: ACTIONS.LOAD_ROTATIONS,
-    payload: rotationsArray,
+    type: ACTIONS.GET_ALL_CARS_SUCCESS,
+    payload: cars,
   };
 }
-
-export function deleteRotation(rotationId) {
-  return {
-    type: ACTIONS.DELETE_ROTATIONS,
-    payload: rotationId,
-  };
-}
-
-export function getAllRotations() {
-  return {
-    type: ACTIONS.GET_ROTATIONS,
-  };
-}
+// export function deleteCar(carId) {
+//   return {
+//     type: ACTIONS.DELETE_CARS,
+//     payload: carId,
+//   };
+// }

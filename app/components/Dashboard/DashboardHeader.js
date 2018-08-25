@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 import { IconButton } from 'material-ui';
 import Toolbar from 'material-ui/Toolbar';
@@ -8,6 +7,8 @@ import MenuIcon from 'material-ui-icons/Menu';
 import Typography from 'material-ui/Typography';
 import Menu from 'material-ui/Menu';
 import PowerSettingsNew from 'material-ui-icons/PowerSettingsNew';
+
+import AppBar from './style';
 import Logo from '../../images/logo2.png';
 
 const DashboardHeader = ({

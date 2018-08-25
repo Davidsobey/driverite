@@ -1,6 +1,6 @@
 /**
  *
- * CarView
+ * EmployeeView
  *
  */
 
@@ -28,7 +28,7 @@ import {
 import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
-import { loadAllCarsRequest } from './actions';
+import { loadAllEmployees } from './actions';
 // import selectAllCarViews from './selectors';
 
 // import reducer from './reducer';
@@ -36,11 +36,11 @@ import { loadAllCarsRequest } from './actions';
 
 // const header = ['CarView Team', 'CarView Area', 'Description', ''];
 
-class CarView extends React.Component {
+class EmployeeView extends React.Component {
   constructor(props) {
     super(props);
     this.state = { obj: {} };
-    this.props.loadAllCarsRequest();
+    // this.props.loadAllEmployees();
   }
 
   handleDelete = (obj) => {
@@ -60,18 +60,31 @@ class CarView extends React.Component {
     this.props.history.push('/car/edit');
   };
   render() {
+    const datas = [
+      {
+        name: 'David Sobey',
+        email: 'david@vortechs.co.za',
+        phone: '0784598668',
+      },
+      {
+        name: 'Jarrod Germs',
+        email: 'jarrod@vortechs.co.za',
+        phone: '0786597742',
+      },
+    ];
+
     const columns = [
       {
         Header: 'Name',
         accessor: 'name',
       },
       {
-        Header: 'Mileage',
-        accessor: 'mileage',
+        Header: 'Email',
+        accessor: 'email',
       },
       {
-        Header: 'Model',
-        accessor: 'modelID',
+        Header: 'Phone',
+        accessor: 'phone',
       },
       {
         Header: 'Edit/Delete',
@@ -111,7 +124,7 @@ class CarView extends React.Component {
             </div>
             <ReactTable
               columns={columns}
-              data={this.props.car.cars}
+              data={datas}
               filterable
               defaultPageSize={10}
               className="-striped -highlight"
@@ -128,19 +141,18 @@ class CarView extends React.Component {
     );
   }
 }
-CarView.propTypes = {
+EmployeeView.propTypes = {
   history: PropTypes.object,
-  loadAllCarsRequest: PropTypes.func,
   // loadAllEmployees: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  car: state.get('car'),
+  employees: state.get('employees'),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadAllCarsRequest: () => dispatch(loadAllCarsRequest()),
+    loadAllEmployees: () => dispatch(loadAllEmployees()),
     // getRotation: (rotationID) => dispatch(getRotation(rotationID)),
     // deleteRotation: (rotationID) => dispatch(deleteRotation(rotationID)),
   };
@@ -151,11 +163,11 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'car', reducer });
-const withSaga = injectSaga({ key: 'car', saga });
+const withReducer = injectReducer({ key: 'rotations', reducer });
+const withSaga = injectSaga({ key: 'rotations', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(CarView);
+)(EmployeeView);

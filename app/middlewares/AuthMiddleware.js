@@ -2,16 +2,15 @@ import React from 'react';
 import decode from 'jwt-decode';
 
 import StorageHandler from '../storage/StorageHandler';
-import API from '../config/api';
+import { DOMAIN } from '../config/constants';
 
 const storageHandler = new StorageHandler();
-const api = new API();
 
 class AuthMiddleware extends React.Component {
   // Initializing important variables
   constructor() {
     super();
-    this.domain = api.DOMAIN; // API server domain (TODO: need to move)
+    this.domain = DOMAIN; // API server domain (TODO: need to move)
     this.fetch = this.fetch.bind(this); // React binding stuff
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this);

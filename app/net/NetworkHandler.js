@@ -1,61 +1,24 @@
 import decode from 'jwt-decode';
 
 import StorageHandler from '../storage/StorageHandler';
-import API from '../config/api';
 
 const storageHandler = new StorageHandler();
-const api = new API();
 
 class NetworkHandler {
-  getUserInfo() {
-    const userInfo = this.fetch(
-      `${api.DOMAIN + api.USER}/${storageHandler.getID()}`,
-      null,
-    );
-    return userInfo;
-  }
+  // async requestCreateManagerByID(data) {
+  //   const url = `${api.DOMAIN + api.MANAGER_CREATE}`;
 
-  async getAllRotation() {
-    const rotations = await this.fetch(api.DOMAIN + api.ROTATIONS_ALL, null);
-    return rotations.data.PostedRotations;
-  }
+  //   const response = await this.post(url, data);
+  //   return response;
+  // }
 
-  async getAllRotationsForManager() {
-    const rotations = await this.fetch(
-      api.DOMAIN + api.getRotationsForManaget(storageHandler.getID()),
-      null,
-    );
-    return rotations.data.PostedRotationsForManager;
-  }
-
-  async requestCreateRotationByID(data) {
-    const url = `${api.DOMAIN + api.ROTATIONS_CREATE}`;
-
-    const response = await this.post(url, data);
-    return response;
-  }
-
-  async requestUpdateRotationByID(data) {
-    const url = `${api.DOMAIN + api.ROTATIONS_UPDATE}`;
-
-    const response = await this.post(url, data);
-    return response;
-  }
-
-  async requestCreateManagerByID(data) {
-    const url = `${api.DOMAIN + api.MANAGER_CREATE}`;
-
-    const response = await this.post(url, data);
-    return response;
-  }
-
-  async requestDeleteRotationByID(id) {
-    const response = await this.fetch(
-      `${api.DOMAIN + api.DELETE_ROTATION}/${id}`,
-      null,
-    );
-    return response;
-  }
+  // async requestDeleteRotationByID(id) {
+  //   const response = await this.fetch(
+  //     `${api.DOMAIN + api.DELETE_ROTATION}/${id}`,
+  //     null,
+  //   );
+  //   return response;
+  // }
 
   async post(url, data) {
     return this.fetch(url, {
@@ -88,9 +51,9 @@ class NetworkHandler {
 
     // Setting Authorization header
     // Authorization: Bearer xxxxxxx.xxxxxxxx.xxxxxx
-    if (this.loggedIn()) {
-      headers.Authorization = `Bearer ${storageHandler.getToken()}`;
-    }
+    // if (this.loggedIn()) {
+    //   headers.Authorization = `Bearer ${storageHandler.getToken()}`;
+    // }
 
     const res = await fetch(url, {
       headers,

@@ -5,7 +5,7 @@ export const HOME = '/home';
 
 export const CARLIST = '/car/list';
 
-export const USERLIST = '/user/list';
+export const EMPLOYEELIST = '/employee/list';
 
 export const REVIEWLIST = '/review/list';
 
