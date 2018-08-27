@@ -126,9 +126,11 @@ const styles = theme => ({
 const routes = [
   { id: 1, description: 'Home', icon: HomeIcon, route: ROUTES.HOME },
   { id: 2, description: 'Employee', icon: FaceIcon, route: ROUTES.EMPLOYEELIST },
-  { id: 3, description: 'Car', icon: CarIcon, route: ROUTES.CARLIST },
+  { id: 3, description: 'Make', icon: CarIcon, route: ROUTES.MAKELIST },
+  { id: 4, description: 'Model', icon: CarIcon, route: ROUTES.MODELLIST },
+  { id: 5, description: 'Car', icon: CarIcon, route: ROUTES.CARLIST },
   {
-    id: 4,
+    id: 6,
     description: 'Advert/Review',
     icon: ReviewIcon,
     route: ROUTES.REVIEWLIST,

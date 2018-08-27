@@ -6,28 +6,28 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
 import * as ACTIONS from './constants';
-import { loadAllCarsSuccess } from './actions';
+import { loadAllCarModelsSuccess } from './actions';
 
 import { error } from '../../../components/Alert/actions';
 import NetworkHandler from '../../../net/NetworkHandler';
 import { DOMAIN } from '../../../config/constants';
 
-function* getAllCars() {
+function* getAllCarModels() {
   // Load Data
   const Network = new NetworkHandler();
 
   try {
-    const cars = yield Network.fetch(`${DOMAIN}/cars`, null);
-    yield put(loadAllCarsSuccess(cars));
+    const models = yield Network.fetch(`${DOMAIN}/carModels`, null);
+    yield put(loadAllCarModelsSuccess(models));
   } catch (errorMsg) {
     yield put(
       error({
-        message: `Unable to load rotations, please try again.${errorMsg}`,
+        message: `Unable to load data, please try again.${errorMsg}`,
       }),
     );
   }
 }
 
-export default function* carSagas() {
-  yield takeLatest(ACTIONS.GET_ALL_CARS_REQUEST, getAllCars);
+export default function* carModelSagas() {
+  yield takeLatest(ACTIONS.GET_ALL_CAR_MODELS_REQUEST, getAllCarModels);
 }

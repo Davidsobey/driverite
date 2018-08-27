@@ -67,7 +67,7 @@ function* getAllEmployees() {
 * Root saga manages watcher lifecycle
 */
 
-export default function* rotationSagas() {
+export default function* employeeSagas() {
   yield takeLatest(ACTIONS.GET_ALL_EMPLOYEES, getAllEmployees);
   // yield takeLatest(ACTIONS.DELETE_ROTATIONS, deleteRotation);
   // yield takeLatest(ACTIONS.LOGIN_FAILED, stopLogin);

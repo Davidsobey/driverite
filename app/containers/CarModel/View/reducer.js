@@ -18,12 +18,12 @@ const initialState = fromJS({});
 //   return false;
 // }
 
-function carReducer(state = initialState, action) {
+function rotationReducer(state = initialState, action) {
   switch (action.type) {
-    case ACTIONS.GET_ALL_CARS_REQUEST:
+    case ACTIONS.DELETE_CAR_MODELS_REQUEST:
       return state;
-    case ACTIONS.GET_ALL_CARS_SUCCESS:
-      return { ...state, cars: action.payload };
+    case ACTIONS.GET_ALL_CAR_MODELS_SUCCESS:
+      return { ...state, carModels: action.payload };
 
     // case ACTIONS.DELETE_ROTATIONS:
     //   return {
@@ -39,5 +39,4 @@ function carReducer(state = initialState, action) {
   }
 }
 
-export default carReducer
-;
+export default rotationReducer;
