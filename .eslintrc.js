@@ -7,6 +7,7 @@ module.exports = {
     'react/require-default-props': false,
     'react/forbid-prop-types': false,
     'class-methods-use-this': 0,
+    'jsx-a11y/media-has-caption': 0,
   },
   env: {
     jest: true,

@@ -27,8 +27,8 @@ injectGlobal`
     text-decoration: none;
   }
   .center{
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
   }
   
   .end{
@@ -67,6 +67,23 @@ injectGlobal`
     height: 100%;
   }
 
+  .white-color{
+    color: white !important
+  }
+  .orange-color{
+    color: #ce370e !important
+  }
+  
+  .padding{
+    padding: 50px;
+    background-color: transparent !important;
+  }
+
+  .posRel{
+    position: relative;
+    z-index: 100;   
+  }
+
   #tooltip-edit{
     padding: 10px 15px;
     min-width: 130px;
@@ -91,6 +108,15 @@ injectGlobal`
     word-wrap: normal;
     white-space: normal;
     line-break: auto;
+  }
+
+  .img60{
+    width: 60%
+    height: 60%
+  }
+
+  .pad120{
+    padding-top: 120px;
   }
 
   #tooltip-delete{
