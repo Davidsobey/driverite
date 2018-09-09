@@ -4,6 +4,7 @@
 
 // import jwtDecode from 'jwt-decode';
 import { put, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 import * as ACTIONS from './constants';
 
@@ -22,6 +23,7 @@ function* createCarMake(carMake) {
         message: 'Creation Successful',
       }),
     );
+    yield put(push('/make/list'));
   } catch (errorMsg) {
     yield put(
       error({

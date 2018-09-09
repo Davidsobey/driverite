@@ -17,21 +17,21 @@ function ButtonWithTheme(props) {
     props.color === 'secondary' &&
         props.variant === 'raised' &&
         `background-color: ${theme.palette.grey[500]};
-        color: ${theme.palette.primary[500]}; `};
+        color: ${theme.palette.secondary[500]}; `};
       ${() =>
     props.color === 'secondary' &&
         props.variant !== 'raised' &&
-        `color: ${theme.palette.primary[500]}; `};
+        `color: ${theme.palette.secondary[500]}; `};
     }
     &&:hover {
       ${() =>
     props.color === 'primary' &&
         props.variant === 'raised' &&
-        `background-color: ${theme.palette.primary[700]};`};
+        `background-color: ${theme.palette.primary[200]};`};
       ${() =>
     props.color === 'secondary' &&
         props.variant === 'raised' &&
-        `background-color: ${theme.palette.grey[700]};`};
+        `background-color: ${theme.palette.secondary[200]};`};
     }
   `;
 

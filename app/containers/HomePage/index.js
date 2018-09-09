@@ -3,11 +3,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 import { Paper } from 'material-ui';
+import { reduxForm, Field, Form } from 'redux-form/immutable';
+import { submit } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import FormControl from 'material-ui/Form/FormControl';
+
+import TextField from '../../components/TextField/style';
+import Button from '../../components/Button';
+import Card from '../../components/Card';
+
+import injectSaga from '../../utils/injectSaga';
+import injectReducer from '../../utils/injectReducer';
+
+import { createUser } from './actions';
+import reducer from './reducer';
+import saga from './saga';
 
 import { StyledAppBar, StyledToolBar } from './style';
+import StyledForm from '../../styles/global-styled-components';
 import drLogo from '../../images/drLogo.png';
 import drFullLogo from '../../images/logo.png';
 import vid from '../../images/Spedometer.mp4';
@@ -25,6 +41,7 @@ const styles = {
     height: '100%',
     objectFit: 'contain',
     filter: 'blur(8px)',
+    minHeight: '280px',
   },
   myVideo: {
     position: 'absolute',
@@ -47,8 +64,22 @@ const styles = {
   },
 };
 
+const FORM_NAME = 'home_page';
+
 // eslint-disable-next-line
-class SimpleAppBar extends React.Component {
+class HomePage extends React.Component {
+  required = value => (value ? undefined : 'Required Field');
+
+  defaultSubmit = (values) => {
+    this.props.onSubmit(values.toJS());
+  };
+
+  isSubmit = (event) => {
+    if (event.keyCode === 13) {
+      this.props.submit();
+    }
+  };
+
   render = () => {
     const { classes } = this.props;
     return (
@@ -127,22 +158,98 @@ class SimpleAppBar extends React.Component {
           >
             CONTACT US
           </Typography>
-          <TextField
-            id="name"
-            label="Name"
-            className={classes.textField}
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            margin="normal"
-          />
+          <Card cardTitle="Please supply us with your contact details">
+            <Form
+              onSubmit={this.props.handleSubmit(this.defaultSubmit)}
+              noValidate
+              autoComplete="off"
+            >
+              <StyledForm>
+                <FormControl fullWidth>
+                  <Field
+                    className="autoMargin"
+                    name="name"
+                    label="Name"
+                    component={TextField}
+                    InputProps={{
+                      autoFocus: true,
+                    }}
+                    validate={[this.required]}
+                  />
+                  <Field
+                    className="autoMargin"
+                    name="email"
+                    label="Email"
+                    component={TextField}
+                    InputProps={{
+                      autoFocus: false,
+                    }}
+                    validate={[this.required]}
+                  />
+                  <Field
+                    className="autoMargin"
+                    name="phone"
+                    label="Phone Number"
+                    component={TextField}
+                    InputProps={{
+                      autoFocus: false,
+                    }}
+                    validate={[this.required]}
+                  />
+                </FormControl>
+                <div className="end">
+                  <Button
+                    variant="raised"
+                    color="secondary"
+                    tabIndex={0}
+                    className="margin"
+                    type="submit"
+                  >
+                    Create
+                  </Button>
+                </div>
+              </StyledForm>
+            </Form>
+          </Card>
         </Paper>
       </div>
     );
   };
 }
 
-SimpleAppBar.propTypes = {
+HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(SimpleAppBar);
+const withForm = reduxForm(
+  {
+    form: FORM_NAME,
+  },
+  HomePage,
+);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmit: values => dispatch(createUser(values)),
+    submit: () => dispatch(submit(FORM_NAME)),
+  };
+}
+
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
+
+const withReducer = injectReducer({ key: 'HomePage', reducer });
+const withSaga = injectSaga({ key: 'HomePage', saga });
+
+export default compose(
+  withForm,
+  withReducer,
+  withSaga,
+  withConnect,
+  withStyles(styles),
+)(HomePage);

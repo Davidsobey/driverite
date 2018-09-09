@@ -62,8 +62,8 @@ class CarView extends React.Component {
   render() {
     const columns = [
       {
-        Header: 'Name',
-        accessor: 'name',
+        Header: 'Variant',
+        accessor: 'variant',
       },
       {
         Header: 'Mileage',

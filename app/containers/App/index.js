@@ -26,6 +26,7 @@ import CarModelView from '../CarModel/View/index';
 import CarMakeView from '../CarMake/View/index';
 import CarView from '../Car/View/index';
 import EmployeeView from '../Employee/View/index';
+import EmployeeHomeView from '../EmployeeHomeView/index';
 
 // import CarModelCreate from '../CarModel/Create/index';
 import CarMakeCreate from '../CarMake/Create/index';
@@ -40,12 +41,12 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path={ROUTES.LOGIN} component={LoginPage} />
         <Dashboard>
-          <Route exact path={ROUTES.HOME} component={HomePage} />
+          <Route exact path={ROUTES.HOME} component={EmployeeHomeView} />
           <Route exact path={ROUTES.MAKELIST} component={CarMakeView} />
           <Route exact path={ROUTES.MODELLIST} component={CarModelView} />
           <Route exact path={ROUTES.CARLIST} component={CarView} />
           <Route exact path={ROUTES.EMPLOYEELIST} component={EmployeeView} />
-          <Route exact path={ROUTES.REVIEWLIST} component={HomePage} />
+          <Route exact path={ROUTES.REVIEWLIST} component={EmployeeHomeView} />
 
           <Route exact path={ROUTES.MAKECREATE} component={CarMakeCreate} />
           {/* <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />

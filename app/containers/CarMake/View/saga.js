@@ -28,6 +28,23 @@ function* getAllCarMakes() {
   }
 }
 
+function* deleteCarMake() {
+  // Load Data
+  const Network = new NetworkHandler();
+
+  try {
+    const makes = yield Network.fetch(`${DOMAIN}/carMakes`, null);
+    yield put(loadAllCarMakeSuccess(makes));
+  } catch (errorMsg) {
+    yield put(
+      error({
+        message: `Unable to load data, please try again.${errorMsg}`,
+      }),
+    );
+  }
+}
+
 export default function* carMakeSagas() {
   yield takeLatest(ACTIONS.GET_ALL_CAR_MAKES_REQUEST, getAllCarMakes);
+  yield takeLatest(ACTIONS.DELETE_CAR_MAKES_REQUEST, deleteCarMake);
 }

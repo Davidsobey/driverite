@@ -25,9 +25,10 @@ export function loadAllCarMakeSuccess(makes) {
     payload: makes,
   };
 }
-// export function deleteCar(carId) {
-//   return {
-//     type: ACTIONS.DELETE_CARS,
-//     payload: carId,
-//   };
-// }
+
+export function deleteCarMake(carMakeID) {
+  return {
+    type: ACTIONS.DELETE_CAR_MAKES_REQUEST,
+    payload: carMakeID,
+  };
+}

@@ -115,12 +115,12 @@ class EmployeeView extends React.Component {
     return (
       <div>
         <RegularCard
-          cardTitle="Cars"
-          cardSubtitle="List of Cars that have been added to the Drive Rite Database."
+          cardTitle="Employee"
+          cardSubtitle="List of Employees that have been added to the Drive Rite Database."
         >
           <div>
             <div className="content end">
-              <Button> Create New Car</Button>
+              <Button> Create New Employee</Button>
             </div>
             <ReactTable
               columns={columns}

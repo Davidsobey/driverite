@@ -3,28 +3,40 @@
  */
 
 // import jwtDecode from 'jwt-decode';
-import { put, takeLatest } from 'redux-saga/effects';
+import { fromJS } from 'immutable';
+import { isNumber } from 'util';
+import {
+  GET_ALL_CAR_MAKES_REQUEST,
+  GET_ALL_CAR_MAKES_SUCCESS,
+  DELETE_CAR_MAKES_REQUEST,
+  DELETE_CAR_MAKES_SUCCESS,
+} from './constants';
 
-import * as ACTIONS from './constants';
+function filterById(id, delId) {
+  if (isNumber(id) && id !== 0 && id !== delId) {
+    return true;
+  }
+  return false;
+}
 
-import { error } from '../../../components/Alert/actions';
-import NetworkHandler from '../../../net/NetworkHandler';
-import { DOMAIN } from '../../../config/constants';
+const initialState = fromJS({});
 
-function* getAllCarMakes() {
-  const Network = new NetworkHandler();
-
-  try {
-    yield Network.fetch(`${DOMAIN}/carMakes`, null);
-  } catch (errorMsg) {
-    yield put(
-      error({
-        message: `Unable to load data, please try again.${errorMsg}`,
-      }),
-    );
+function loadMake(state = initialState, action) {
+  switch (action.type) {
+    case GET_ALL_CAR_MAKES_REQUEST:
+      return state;
+    case GET_ALL_CAR_MAKES_SUCCESS:
+      return { ...state, carMakes: action.payload };
+    case DELETE_CAR_MAKES_REQUEST:
+      return state;
+    case DELETE_CAR_MAKES_SUCCESS:
+      return {
+        ...state,
+        carMakes: state.carMakes.filter(obj => filterById(obj.id, action.id)),
+      };
+    default:
+      return state;
   }
 }
 
-export default function* carMakeSagas() {
-  yield takeLatest(ACTIONS.GET_ALL_CAR_MAKES_REQUEST, getAllCarMakes);
-}
+export default loadMake;

@@ -114,7 +114,10 @@ injectGlobal`
     width: 60%
     height: 60%
   }
-
+  .img30{
+    width: 30%
+    height: 30%
+  }
   .pad120{
     padding-top: 120px;
   }

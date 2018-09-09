@@ -28,7 +28,7 @@ import {
 import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
-import { loadAllCarMakeRequest } from './actions';
+import { loadAllCarMakeRequest, deleteCarMake } from './actions';
 
 class CarMakeView extends React.Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class CarMakeView extends React.Component {
 
   /* eslint-disable */
   confirmDelete = obj => () => {
-    // this.props.dispatch(EmployeeActions.deleteClient(obj.id));
+    this.props.deleteCarMake(obj.id);
     this.child.handleClose();
   };
 
@@ -128,7 +128,7 @@ function mapDispatchToProps(dispatch) {
   return {
     loadAllCarMakeRequest: () => dispatch(loadAllCarMakeRequest()),
     // getRotation: (rotationID) => dispatch(getRotation(rotationID)),
-    // deleteRotation: (rotationID) => dispatch(deleteRotation(rotationID)),
+    deleteCarMake: carMakeID => dispatch(deleteCarMake(carMakeID)),
   };
 }
 

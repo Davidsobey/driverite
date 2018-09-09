@@ -8,6 +8,7 @@ export const MODELLIST = '/model/list';
 export const CARLIST = '/car/list';
 export const EMPLOYEELIST = '/employee/list';
 export const REVIEWLIST = '/review/list';
+export const EMPLOYEEHOMEVIEW = '/home';
 
 export const MAKECREATE = '/make/create';
 export const MODELCREATE = '/model/create';
