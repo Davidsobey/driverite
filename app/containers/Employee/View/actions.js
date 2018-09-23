@@ -26,3 +26,10 @@ export function loadAllEmployees() {
     type: ACTIONS.GET_ALL_EMPLOYEES,
   };
 }
+
+export function loadAllEmployeesSuccess(employees) {
+  return {
+    type: ACTIONS.GET_ALL_EMPLOYEES_SUCCESS,
+    payload: employees,
+  };
+}

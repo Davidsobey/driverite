@@ -21,7 +21,9 @@ const initialState = fromJS({});
 function rotationReducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.GET_ALL_EMPLOYEES:
-      return { ...state, rotations: action.payload };
+      return state;
+    case ACTIONS.GET_ALL_EMPLOYEES_SUCCESS:
+      return { ...state, employees: action.payload };
     // case ACTIONS.DELETE_ROTATIONS:
     //   return {
     //     ...state,

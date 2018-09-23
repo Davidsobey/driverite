@@ -67,7 +67,7 @@ class CarModelView extends React.Component {
       },
       {
         Header: 'Make',
-        accessor: 'makeID',
+        accessor: 'make.name',
       },
       {
         Header: 'Edit/Delete',
@@ -103,7 +103,7 @@ class CarModelView extends React.Component {
         >
           <div>
             <div className="content end">
-              <Button> Create New Model</Button>
+              <Button href="/model/create"> Create New Model</Button>
             </div>
             <ReactTable
               columns={columns}

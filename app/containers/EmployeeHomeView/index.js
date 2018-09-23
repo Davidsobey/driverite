@@ -16,7 +16,6 @@ import Logo from '../../images/logo.png';
 
 import { LoginWrapper } from './styles';
 import AuthMiddleware from '../../middlewares/AuthMiddleware';
-import RegularCard from '../../components/Card';
 
 /* eslint-disable react/prefer-stateless-function */
 class LoginPage extends React.PureComponent {

@@ -40,7 +40,7 @@ class EmployeeView extends React.Component {
   constructor(props) {
     super(props);
     this.state = { obj: {} };
-    // this.props.loadAllEmployees();
+    this.props.loadAllEmployees();
   }
 
   handleDelete = (obj) => {
@@ -60,19 +60,6 @@ class EmployeeView extends React.Component {
     this.props.history.push('/car/edit');
   };
   render() {
-    const datas = [
-      {
-        name: 'David Sobey',
-        email: 'david@vortechs.co.za',
-        phone: '0784598668',
-      },
-      {
-        name: 'Jarrod Germs',
-        email: 'jarrod@vortechs.co.za',
-        phone: '0786597742',
-      },
-    ];
-
     const columns = [
       {
         Header: 'Name',
@@ -120,11 +107,11 @@ class EmployeeView extends React.Component {
         >
           <div>
             <div className="content end">
-              <Button> Create New Employee</Button>
+              <Button href="/employee/create"> Create New Employee</Button>
             </div>
             <ReactTable
               columns={columns}
-              data={datas}
+              data={this.props.employees.employees}
               filterable
               defaultPageSize={10}
               className="-striped -highlight"
@@ -143,7 +130,7 @@ class EmployeeView extends React.Component {
 }
 EmployeeView.propTypes = {
   history: PropTypes.object,
-  // loadAllEmployees: PropTypes.func,
+  loadAllEmployees: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -163,8 +150,8 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'rotations', reducer });
-const withSaga = injectSaga({ key: 'rotations', saga });
+const withReducer = injectReducer({ key: 'employees', reducer });
+const withSaga = injectSaga({ key: 'employees', saga });
 
 export default compose(
   withReducer,

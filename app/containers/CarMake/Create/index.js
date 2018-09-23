@@ -24,7 +24,7 @@ import { createCarMakeRequest } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-const FORM_NAME = 'edit';
+const FORM_NAME = 'create';
 
 export class CarMakeCreate extends React.Component {
   required = value => (value ? undefined : 'Required Field');

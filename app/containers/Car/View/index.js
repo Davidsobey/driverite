@@ -71,7 +71,7 @@ class CarView extends React.Component {
       },
       {
         Header: 'Model',
-        accessor: 'modelID',
+        accessor: 'model.name',
       },
       {
         Header: 'Edit/Delete',
@@ -107,7 +107,7 @@ class CarView extends React.Component {
         >
           <div>
             <div className="content end">
-              <Button> Create New Car</Button>
+              <Button href="/car/create"> Create New Car</Button>
             </div>
             <ReactTable
               columns={columns}

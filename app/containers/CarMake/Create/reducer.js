@@ -9,7 +9,7 @@ import { CREATE_CAR_MAKE_REQUEST } from './constants';
 
 const initialState = fromJS({});
 
-function rotationCreateReducer(state = initialState, action) {
+function makeCreateReducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_CAR_MAKE_REQUEST:
       return state;
@@ -18,4 +18,4 @@ function rotationCreateReducer(state = initialState, action) {
   }
 }
 
-export default rotationCreateReducer;
+export default makeCreateReducer;
