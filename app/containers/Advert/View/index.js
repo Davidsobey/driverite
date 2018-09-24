@@ -19,16 +19,12 @@ import injectReducer from '../../../utils/injectReducer';
 
 import reducer from './reducer';
 import saga from './saga';
-
 import IconButton from '../../../components/Button/IconButton';
-import {
-  StyledDelete,
-  StyledEdit,
-} from '../../../components/Button/StyledButton';
+import { StyledDelete, StyledEdit } from '../../../components/Button/StyledButton';
 import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
+import { loadAllAdsRequest } from './actions';
 
-import { loadAllCarsRequest } from './actions';
 // import selectAllCarViews from './selectors';
 
 // import reducer from './reducer';
@@ -62,16 +58,32 @@ class AdView extends React.Component {
   render() {
     const columns = [
       {
-        Header: 'Car',
-        accessor: 'CarID',
+        Header: 'Make',
+        accessor: 'car.model.make.name',
+      },
+      {
+        Header: 'Model',
+        accessor: 'car.model.name',
+      },
+      {
+        Header: 'Variant',
+        accessor: 'car.variant',
+      },
+      {
+        Header: 'Mileage',
+        accessor: 'car.mileage',
       },
       {
         Header: 'Price',
-        accessor: 'Price',
+        accessor: 'price',
       },
       {
         Header: 'Write Up',
-        accessor: 'WriteUp',
+        accessor: 'writeUp',
+      },  
+      {
+        PhotoLink: 'Photo',
+        accessor: 'photoPath',
       },
       {
         Header: 'Edit/Delete',
@@ -109,9 +121,10 @@ class AdView extends React.Component {
             <div className="content end">
               <Button href="/advert/create"> Create New Advertisement</Button>
             </div>
+            <br />
             <ReactTable
               columns={columns}
-              data={this.props.car.cars}
+              data={this.props.ad.ads}
               filterable
               defaultPageSize={10}
               className="-striped -highlight"
@@ -135,7 +148,7 @@ AdView.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  ad: state.get('ad'),
+  ad: state.get('ads'),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -151,8 +164,8 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'ad', reducer });
-const withSaga = injectSaga({ key: 'ad', saga });
+const withReducer = injectReducer({ key: 'ads', reducer });
+const withSaga = injectSaga({ key: 'ads', saga });
 
 export default compose(
   withReducer,

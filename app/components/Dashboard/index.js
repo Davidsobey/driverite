@@ -15,6 +15,7 @@ import HomeIcon from 'material-ui-icons/Home';
 import CarIcon from 'material-ui-icons/DriveEta';
 import FaceIcon from 'material-ui-icons/Face';
 import ReviewIcon from 'material-ui-icons/RateReview';
+import AdvertIcon from 'material-ui-icons/ShoppingBasket';
 
 import injectSaga from '../../utils/injectSaga';
 import injectReducer from '../../utils/injectReducer';
@@ -129,13 +130,10 @@ const routes = [
   { id: 3, description: 'Make', icon: CarIcon, route: ROUTES.MAKELIST },
   { id: 4, description: 'Model', icon: CarIcon, route: ROUTES.MODELLIST },
   { id: 5, description: 'Car', icon: CarIcon, route: ROUTES.CARLIST },
-  {
-    id: 6,
-    description: 'Advert/Review',
-    icon: ReviewIcon,
-    route: ROUTES.REVIEWLIST,
-  },
+  { id: 6, description: 'Review', icon: ReviewIcon, route: ROUTES.REVIEWLIST },
+  { id: 7, description: 'Advertisement', icon: AdvertIcon, route: ROUTES.ADLIST },
 ];
+
 export class Dashboard extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   state = {

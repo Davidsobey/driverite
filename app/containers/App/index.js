@@ -29,10 +29,10 @@ import EmployeeView from '../Employee/View/index';
 import EmployeeHomeView from '../EmployeeHomeView/index';
 import AdView from '../Advert/View/index';
 
-import CarModelCreate from '../CarModel/Create/index';
+// import CarModelCreate from '../CarModel/Create/index';
 import CarMakeCreate from '../CarMake/Create/index';
-import CarCreate from '../Car/Create/index';
-import EmployeeCreate from '../Employee/Create/index';
+// import CarCreate from '../Car/Create/index';
+// import EmployeeCreate from '../Employee/Create/index';
 import AdCreate from '../Advert/Create/index';
 
 function App() {
@@ -52,9 +52,6 @@ function App() {
           <Route exact path={ROUTES.REVIEWLIST} component={EmployeeHomeView} />
 
           <Route exact path={ROUTES.MAKECREATE} component={CarMakeCreate} />
-          <Route exact path={ROUTES.EMPLOYEECREATE} component={EmployeeCreate} />
-          <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />
-          <Route exact path={ROUTES.CARCREATE} component={CarCreate} />
           <Route exact path={ROUTES.ADCREATE} component={AdCreate} />
 
           {/* <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />

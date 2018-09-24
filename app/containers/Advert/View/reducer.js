@@ -21,9 +21,9 @@ const initialState = fromJS({});
 function adsReducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.GET_ALL_ADS_REQUEST:
-      return state;
+      return { ...state, adsLoading: true };
     case ACTIONS.GET_ALL_ADS_SUCCESS:
-      return { ...state, ads: action.payload };
+      return { ...state, ads: action.payload, adsLoading: false };
 
     // case ACTIONS.DELETE_ROTATIONS:
     //   return {

@@ -75,13 +75,14 @@ export class AdCreate extends React.Component {
                   <Field
                     name="car"
                     label="Car"
+                    width="auto"
                     component={Select}
                     validate={[this.required]}
                   >
-                    {(Array.isArray(this.props.cars) ? this.props.cars : [])
+                    {(Array.isArray(this.props.cars.cars) ? this.props.cars.cars : [])
                       .map(car => (
                         <MenuItem value={car.id} key={car.id}>
-                          {car.variant}
+                          {`${car.model.make.name} ${car.model.name} ${car.variant}`}
                         </MenuItem>
                       ))}
                   </Field>
@@ -132,7 +133,7 @@ AdCreate.propTypes = {
   submit: PropTypes.func.isRequired,
   loadAllCarsRequest: PropTypes.func,
   carsLoading: PropTypes.bool,
-  cars: PropTypes.array,
+  cars: PropTypes.object,
 };
 
 const withForm = reduxForm(
@@ -141,6 +142,10 @@ const withForm = reduxForm(
   },
   AdCreate,
 );
+
+const mapStateToProps = state => ({
+  cars: state.get('adCreate'),
+});
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -151,7 +156,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const withConnect = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 );
 
