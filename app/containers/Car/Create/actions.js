@@ -6,9 +6,9 @@
 import * as ACTIONS from './constants';
 
 // eslint-disable-next-line
-export function createCarMakeRequest(carMake) {
+export function createCarRequest(car) {
   return {
-    type: ACTIONS.CREATE_CAR_MAKE_REQUEST,
-    payload: carMake,
+    type: ACTIONS.CREATE_CAR_REQUEST,
+    payload: car,
   };
 }

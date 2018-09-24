@@ -20,13 +20,13 @@ import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import StyledForm from '../../../styles/global-styled-components';
 
-import { createCarMakeRequest } from './actions';
+import { createCarModelRequest } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
 const FORM_NAME = 'create';
 
-export class CarMakeCreate extends React.Component {
+export class CarModelCreate extends React.Component {
   required = value => (value ? undefined : 'Required Field');
 
   defaultSubmit = (values) => {
@@ -42,8 +42,8 @@ export class CarMakeCreate extends React.Component {
   render() {
     return (
       <Card
-        cardTitle="Create Car Make"
-        cardSubtitle="Create a Make that you can associate models to."
+        cardTitle="Create Car Model"
+        cardSubtitle="Create a Model that you can associate Cars to."
       >
         <Form
           onSubmit={this.props.handleSubmit(this.defaultSubmit)}
@@ -55,10 +55,22 @@ export class CarMakeCreate extends React.Component {
               <Field
                 className="autoMargin"
                 name="name"
-                label="Make Name"
+                label="Model Name"
                 component={TextField}
                 InputProps={{
                   autoFocus: true,
+                }}
+                validate={[this.required]}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <Field
+                className="autoMargin"
+                name="makeID"
+                label="Make Name"
+                component={TextField}
+                InputProps={{
+                  autoFocus: false,
                 }}
                 validate={[this.required]}
               />
@@ -81,7 +93,7 @@ export class CarMakeCreate extends React.Component {
   }
 }
 
-CarMakeCreate.propTypes = {
+CarModelCreate.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
@@ -91,12 +103,12 @@ const withForm = reduxForm(
   {
     form: FORM_NAME,
   },
-  CarMakeCreate,
+  CarModelCreate,
 );
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmit: values => dispatch(createCarMakeRequest(values)),
+    onSubmit: values => dispatch(createCarModelRequest(values)),
     submit: () => dispatch(submit(FORM_NAME)),
   };
 }
@@ -106,13 +118,13 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'carMakeCreate', reducer });
-const withSaga = injectSaga({ key: 'carMakeCreate', saga });
+const withReducer = injectReducer({ key: 'carModelCreate', reducer });
+const withSaga = injectSaga({ key: 'carModelCreate', saga });
 
 export default compose(
   withForm,
   withReducer,
   withSaga,
   withConnect,
-)(CarMakeCreate);
+)(CarModelCreate);
 

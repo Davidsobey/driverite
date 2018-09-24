@@ -43,8 +43,8 @@ export class CarEdit extends React.Component {
     return (
       <div>
         <RegularCard
-          cardTitle="Car Makes"
-          cardSubtitle="List of Car Makes that have been added to the Drive Rite Database."
+          cardTitle="Car"
+          cardSubtitle="Update a Cars details in the Drive Rite Database."
         >
           <Form
             onSubmit={this.props.handleSubmit(this.defaultSubmit)}

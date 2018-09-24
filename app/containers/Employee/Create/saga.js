@@ -12,18 +12,18 @@ import { error, success } from '../../../components/Alert/actions';
 import NetworkHandler from '../../../net/NetworkHandler';
 import { DOMAIN } from '../../../config/constants';
 
-function* createCarMake(carMake) {
+function* createEmployee(employee) {
   // Load Data
   const Network = new NetworkHandler();
 
   try {
-    yield Network.post(`${DOMAIN}/carMakes`, carMake.payload);
+    yield Network.post(`${DOMAIN}/employees`, employee.payload);
     yield put(
       success({
         message: 'Creation Successful',
       }),
     );
-    yield put(push('/make/list'));
+    yield put(push('/employee/list'));
   } catch (errorMsg) {
     yield put(
       error({
@@ -33,6 +33,6 @@ function* createCarMake(carMake) {
   }
 }
 
-export default function* carMakeSagas() {
-  yield takeLatest(ACTIONS.CREATE_CAR_MAKE_REQUEST, createCarMake);
+export default function* EmployeeSagas() {
+  yield takeLatest(ACTIONS.CREATE_EMPLOYEE_REQUEST, createEmployee);
 }

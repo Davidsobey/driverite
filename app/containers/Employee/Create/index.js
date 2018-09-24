@@ -1,6 +1,6 @@
 /**
  *
- * CarMakeCreate
+ * EmployeeCreate
  *
  */
 
@@ -20,14 +20,18 @@ import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import StyledForm from '../../../styles/global-styled-components';
 
-import { createCarMakeRequest } from './actions';
+import { createEmployeeRequest } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
 const FORM_NAME = 'create';
 
-export class CarMakeCreate extends React.Component {
+export class EmployeeCreate extends React.Component {
   required = value => (value ? undefined : 'Required Field');
+  email = value =>
+    (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+      ? 'Invalid email address'
+      : undefined);
 
   defaultSubmit = (values) => {
     this.props.onSubmit(values.toJS());
@@ -42,8 +46,8 @@ export class CarMakeCreate extends React.Component {
   render() {
     return (
       <Card
-        cardTitle="Create Car Make"
-        cardSubtitle="Create a Make that you can associate models to."
+        cardTitle="Create Employee"
+        cardSubtitle="Create an Employee that can login to the system."
       >
         <Form
           onSubmit={this.props.handleSubmit(this.defaultSubmit)}
@@ -55,10 +59,34 @@ export class CarMakeCreate extends React.Component {
               <Field
                 className="autoMargin"
                 name="name"
-                label="Make Name"
+                label="Employee Name"
                 component={TextField}
                 InputProps={{
-                  autoFocus: true,
+                  autoFocus: false,
+                }}
+                validate={[this.required]}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <Field
+                className="autoMargin"
+                name="email"
+                label="Email"
+                component={TextField}
+                InputProps={{
+                  autoFocus: false,
+                }}
+                validate={[this.required, this.email]}
+              />
+            </FormControl>
+            <FormControl fullWidth>
+              <Field
+                className="autoMargin"
+                name="phone"
+                label="Phone"
+                component={TextField}
+                InputProps={{
+                  autoFocus: false,
                 }}
                 validate={[this.required]}
               />
@@ -81,7 +109,7 @@ export class CarMakeCreate extends React.Component {
   }
 }
 
-CarMakeCreate.propTypes = {
+EmployeeCreate.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
@@ -91,12 +119,12 @@ const withForm = reduxForm(
   {
     form: FORM_NAME,
   },
-  CarMakeCreate,
+  EmployeeCreate,
 );
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmit: values => dispatch(createCarMakeRequest(values)),
+    onSubmit: values => dispatch(createEmployeeRequest(values)),
     submit: () => dispatch(submit(FORM_NAME)),
   };
 }
@@ -106,13 +134,12 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'carMakeCreate', reducer });
-const withSaga = injectSaga({ key: 'carMakeCreate', saga });
+const withReducer = injectReducer({ key: 'employeeCreate', reducer });
+const withSaga = injectSaga({ key: 'employeeCreate', saga });
 
 export default compose(
   withForm,
   withReducer,
   withSaga,
   withConnect,
-)(CarMakeCreate);
-
+)(EmployeeCreate);

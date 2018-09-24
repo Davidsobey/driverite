@@ -5,17 +5,17 @@
  */
 
 import { fromJS } from 'immutable';
-import { CREATE_CAR_MAKE_REQUEST } from './constants';
+import { CREATE_CAR_REQUEST } from './constants';
 
 const initialState = fromJS({});
 
-function makeCreateReducer(state = initialState, action) {
+function carCreateReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_CAR_MAKE_REQUEST:
+    case CREATE_CAR_REQUEST:
       return state;
     default:
       return state;
   }
 }
 
-export default makeCreateReducer;
+export default carCreateReducer;

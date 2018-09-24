@@ -44,7 +44,7 @@ export class CarModelEdit extends React.Component {
       <div>
         <RegularCard
           cardTitle="Car Model"
-          cardSubtitle="List of Car Makes that have been added to the Drive Rite Database."
+          cardSubtitle="Update a Models details in the Drive Rite Database."
         >
           <Form
             onSubmit={this.props.handleSubmit(this.defaultSubmit)}
