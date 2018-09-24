@@ -4,10 +4,11 @@
 
 // import jwtDecode from 'jwt-decode';
 import { put, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 import { error } from '../../../components/Alert/actions';
 import * as ACTIONS from './constants';
-import { loadAllEmployeesSuccess } from './actions';
+import { loadAllEmployeesSuccess, loadEmployeeSuccess } from './actions';
 import NetworkHandler from '../../../net/NetworkHandler';
 import { DOMAIN } from '../../../config/constants';
 
@@ -27,6 +28,24 @@ function* getAllEmployees() {
   }
 }
 
+
+function* getEmployee(employeeID) {
+  // Load Data
+  const Network = new NetworkHandler();
+
+  try {
+    const employee = yield Network.fetch(`${DOMAIN}/employees/${employeeID.payload}`, null);
+    yield put(loadEmployeeSuccess(employee));
+    yield put(push('/employee/edit'));
+  } catch (errorMsg) {
+    yield put(
+      error({
+        message: `Unable to load data, please try again.${errorMsg}`,
+      }),
+    );
+  }
+}
+
 // function* stopLogin(action) {
 //   yield put(error({ message: action.payload.response.message }));
 // }
@@ -38,4 +57,5 @@ function* getAllEmployees() {
 export default function* employeeSagas() {
   yield takeLatest(ACTIONS.GET_ALL_EMPLOYEES, getAllEmployees);
   // yield takeLatest(ACTIONS.LOGIN_FAILED, stopLogin);
+  yield takeLatest(ACTIONS.GET_EMPLOYEE_REQUEST, getEmployee);
 }

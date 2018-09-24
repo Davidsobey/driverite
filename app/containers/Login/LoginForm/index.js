@@ -88,7 +88,7 @@ class LoginForm extends React.Component {
                 type="password"
                 onKeyDown={event => this.isSubmit(event)}
                 InputProps={{
-                  autoFocus: true,
+                  autoFocus: false,
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton tabIndex={-1}>

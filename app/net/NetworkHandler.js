@@ -27,6 +27,13 @@ class NetworkHandler {
     }).then(res => res);
   }
 
+  async put(url, data) {
+    return this.fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }).then(res => res);
+  }
+
   login(username, password) {
     // Get a token from api server using the fetch api
     return this.fetch(`${this.domain}/login`, {
@@ -65,7 +72,6 @@ class NetworkHandler {
       .catch(error => error);
     return res;
   }
-
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = storageHandler.getToken(); // Getting token from localstorage

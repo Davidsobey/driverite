@@ -28,7 +28,11 @@ import {
 import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
-import { loadAllCarMakeRequest, deleteCarMake } from './actions';
+import {
+  loadAllCarMakeRequest,
+  loadCarMakeRequest,
+  deleteCarMake,
+} from './actions';
 
 class CarMakeView extends React.Component {
   constructor(props) {
@@ -50,8 +54,7 @@ class CarMakeView extends React.Component {
 
   /* eslint-disable */
   handleEdit = editObj => {
-    // this.props.dispatch(EmployeeActions.loadClient(editObj.id));
-    this.props.history.push('/carMake/edit');
+    this.props.loadCarMakeRequest(editObj.id);
   };
   render() {
     const columns = [
@@ -117,7 +120,6 @@ class CarMakeView extends React.Component {
 CarMakeView.propTypes = {
   history: PropTypes.object,
   loadAllCarMakeRequest: PropTypes.func,
-  // loadAllEmployees: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -127,7 +129,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     loadAllCarMakeRequest: () => dispatch(loadAllCarMakeRequest()),
-    // getRotation: (rotationID) => dispatch(getRotation(rotationID)),
+    loadCarMakeRequest: makeID => dispatch(loadCarMakeRequest(makeID)),
     deleteCarMake: carMakeID => dispatch(deleteCarMake(carMakeID)),
   };
 }

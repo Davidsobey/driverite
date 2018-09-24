@@ -4,9 +4,10 @@
 
 // import jwtDecode from 'jwt-decode';
 import { put, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 import * as ACTIONS from './constants';
-import { loadAllCarsSuccess } from './actions';
+import { loadAllCarsSuccess, loadCarSuccess } from './actions';
 
 import { error } from '../../../components/Alert/actions';
 import NetworkHandler from '../../../net/NetworkHandler';
@@ -28,6 +29,24 @@ function* getAllCars() {
   }
 }
 
+function* getCar(carID) {
+  // Load Data
+  const Network = new NetworkHandler();
+
+  try {
+    const car = yield Network.fetch(`${DOMAIN}/cars/${carID.payload}`, null);
+    yield put(loadCarSuccess(car));
+    yield put(push('/car/edit'));
+  } catch (errorMsg) {
+    yield put(
+      error({
+        message: `Unable to load data, please try again.${errorMsg}`,
+      }),
+    );
+  }
+}
+
 export default function* carSagas() {
   yield takeLatest(ACTIONS.GET_ALL_CARS_REQUEST, getAllCars);
+  yield takeLatest(ACTIONS.GET_CAR_REQUEST, getCar);
 }

@@ -4,18 +4,18 @@
  *
  */
 
-import {
-  EDIT_CAR_MAKE, DEFAULT_ACTION,
-} from './constants';
+import { EDIT_CAR_MAKE_SUCCESS, EDIT_CAR_MAKE_REQUEST } from './constants';
 
-export function editCarMake() {
+export function editCarMakeRequest(make) {
   return {
-    type: EDIT_CAR_MAKE,
+    type: EDIT_CAR_MAKE_REQUEST,
+    payload: make,
   };
 }
 
-export function defaultAction() {
+export function editCarMakeSuccess(make) {
   return {
-    type: DEFAULT_ACTION,
+    type: EDIT_CAR_MAKE_SUCCESS,
+    payload: make,
   };
 }

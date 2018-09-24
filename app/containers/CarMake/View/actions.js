@@ -26,6 +26,20 @@ export function loadAllCarMakeSuccess(makes) {
   };
 }
 
+export function loadCarMakeRequest(makeID) {
+  return {
+    type: ACTIONS.GET_CAR_MAKE_REQUEST,
+    payload: makeID,
+  };
+}
+
+export function loadCarMakeSuccess(make) {
+  return {
+    type: ACTIONS.GET_CAR_MAKE_SUCCESS,
+    payload: make,
+  };
+}
+
 export function deleteCarMake(carMakeID) {
   return {
     type: ACTIONS.DELETE_CAR_MAKES_REQUEST,

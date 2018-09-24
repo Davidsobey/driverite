@@ -16,3 +16,9 @@ export const CARCREATE = '/car/create';
 export const EMPLOYEECREATE = '/employee/create';
 export const REVIEWCREATE = '/review/create';
 
+export const MAKEEDIT = '/make/edit';
+export const MODELEDIT = '/model/edit';
+export const CAREDIT = '/car/edit';
+export const EMPLOYEEEDIT = '/employee/edit';
+export const REVIEWEDIT = '/review/edit';
+

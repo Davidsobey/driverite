@@ -24,6 +24,10 @@ function rotationReducer(state = initialState, action) {
       return state;
     case ACTIONS.GET_ALL_EMPLOYEES_SUCCESS:
       return { ...state, employees: action.payload };
+    case ACTIONS.GET_EMPLOYEE_REQUEST:
+      return state;
+    case ACTIONS.GET_EMPLOYEE_SUCCESS:
+      return { ...state, employee: action.payload };
     // case ACTIONS.DELETE_ROTATIONS:
     //   return {
     //     ...state,

@@ -27,6 +27,21 @@ export function loadAllCarsSuccess(cars) {
     payload: cars,
   };
 }
+
+export function loadCarRequest(carID) {
+  return {
+    type: ACTIONS.GET_CAR_REQUEST,
+    payload: carID,
+  };
+}
+
+export function loadCarSuccess(car) {
+  return {
+    type: ACTIONS.GET_CAR_SUCCESS,
+    payload: car,
+  };
+}
+
 // export function deleteCar(carId) {
 //   return {
 //     type: ACTIONS.DELETE_CARS,

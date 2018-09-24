@@ -1,0 +1,10 @@
+/*
+ *
+ * Edit constants
+ *
+ */
+
+export const EDIT_EMPLOYEE_REQUEST = 'EDIT_EMPLOYEE_REQUEST';
+export const EDIT_EMPLOYEE_SUCCESS = 'EDIT_EMPLOYEE_SUCCESS';
+
+export const DEFAULT_ACTION = 'DEFAULT_ACTION';
