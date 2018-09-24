@@ -1,0 +1,4 @@
+export const GET_AD = 'GET_AD';
+export const GET_ALL_ADS_REQUEST = 'GET_ALL_ADS_REQUEST';
+export const GET_ALL_ADS_SUCCESS = 'GET_ALL_ADS_SUCCESS';
+export const DELETE_ADS_REQUEST = 'DELETE_ADS_REQUEST';

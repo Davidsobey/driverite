@@ -8,6 +8,7 @@ module.exports = {
     'react/forbid-prop-types': false,
     'class-methods-use-this': 0,
     'jsx-a11y/media-has-caption': 0,
+    'import/no-unresolved': false,
   },
   env: {
     jest: true,
