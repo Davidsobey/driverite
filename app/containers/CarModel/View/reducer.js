@@ -24,7 +24,10 @@ function rotationReducer(state = initialState, action) {
       return state;
     case ACTIONS.GET_ALL_CAR_MODELS_SUCCESS:
       return { ...state, carModels: action.payload };
-
+    case ACTIONS.GET_CAR_MODEL_REQUEST:
+      return state;
+    case ACTIONS.GET_CAR_MODEL_SUCCESS:
+      return { ...state, carModel: action.payload };
     // case ACTIONS.DELETE_ROTATIONS:
     //   return {
     //     ...state,

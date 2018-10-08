@@ -28,7 +28,7 @@ import {
 import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
-import { loadAllCarModelsRequest } from './actions';
+import { loadAllCarModelsRequest, loadCarModelRequest } from './actions';
 // import selectAllCarModelViews from './selectors';
 
 // import reducer from './reducer';
@@ -56,8 +56,7 @@ class CarModelView extends React.Component {
 
   /* eslint-disable */
   handleEdit = editObj => {
-    // this.props.dispatch(EmployeeActions.loadClient(editObj.id));
-    this.props.history.push('/carModel/edit');
+    this.props.loadCarModelRequest(editObj.id);
   };
   render() {
     const columns = [
@@ -137,8 +136,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     loadAllCarModelsRequest: () => dispatch(loadAllCarModelsRequest()),
-    // getRotation: (rotationID) => dispatch(getRotation(rotationID)),
-    // deleteRotation: (rotationID) => dispatch(deleteRotation(rotationID)),
+    loadCarModelRequest: carID => dispatch(loadCarModelRequest(carID)),
   };
 }
 

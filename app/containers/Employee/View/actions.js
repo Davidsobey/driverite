@@ -33,3 +33,18 @@ export function loadAllEmployeesSuccess(employees) {
     payload: employees,
   };
 }
+
+
+export function loadEmployeeRequest(employeeID) {
+  return {
+    type: ACTIONS.GET_EMPLOYEE_REQUEST,
+    payload: employeeID,
+  };
+}
+
+export function loadEmployeeSuccess(employee) {
+  return {
+    type: ACTIONS.GET_EMPLOYEE_SUCCESS,
+    payload: employee,
+  };
+}

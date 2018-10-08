@@ -36,6 +36,13 @@ import CarMakeCreate from '../CarMake/Create/index';
 // import EmployeeCreate from '../Employee/Create/index';
 import AdCreate from '../Advert/Create/index';
 import ReviewCreate from '../Review/Create/index';
+import CarModelCreate from '../CarModel/Create/index';
+import CarCreate from '../Car/Create/index';
+import EmployeeCreate from '../Employee/Create/index';
+import CarMakeEdit from '../CarMake/Edit/index';
+import CarModelEdit from '../CarModel/Edit/index';
+import CarEdit from '../Car/Edit/index';
+import EmployeeEdit from '../Employee/Edit/index';
 
 function App() {
   return (
@@ -56,13 +63,18 @@ function App() {
           <Route exact path={ROUTES.MAKECREATE} component={CarMakeCreate} />
           <Route exact path={ROUTES.ADCREATE} component={AdCreate} />
 
-          {/* <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />
+          <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />
           <Route exact path={ROUTES.CARCREATE} component={CarCreate} />
           <Route
             exact
             path={ROUTES.EMPLOYEECREATE}
             component={EmployeeCreate}
-  /> */}
+          />
+
+          <Route exact path={ROUTES.MAKEEDIT} component={CarMakeEdit} />
+          <Route exact path={ROUTES.MODELEDIT} component={CarModelEdit} />
+          <Route exact path={ROUTES.CAREDIT} component={CarEdit} />
+          <Route exact path={ROUTES.EMPLOYEEEDIT} component={EmployeeEdit} />
         </Dashboard>
       </Switch>
     </div>

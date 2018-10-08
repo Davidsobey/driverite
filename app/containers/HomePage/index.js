@@ -172,7 +172,7 @@ class HomePage extends React.Component {
                     label="Name"
                     component={TextField}
                     InputProps={{
-                      autoFocus: true,
+                      autoFocus: false,
                     }}
                     validate={[this.required]}
                   />

@@ -25,6 +25,21 @@ export function loadAllCarModelsSuccess(models) {
     payload: models,
   };
 }
+
+export function loadCarModelRequest(modelID) {
+  return {
+    type: ACTIONS.GET_CAR_MODEL_REQUEST,
+    payload: modelID,
+  };
+}
+
+export function loadCarModelSuccess(model) {
+  return {
+    type: ACTIONS.GET_CAR_MODEL_SUCCESS,
+    payload: model,
+  };
+}
+
 // export function deleteCar(carId) {
 //   return {
 //     type: ACTIONS.DELETE_CARS,

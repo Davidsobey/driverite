@@ -28,7 +28,7 @@ import {
 import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
-import { loadAllEmployees } from './actions';
+import { loadAllEmployees, loadEmployeeRequest } from './actions';
 // import selectAllCarViews from './selectors';
 
 // import reducer from './reducer';
@@ -56,8 +56,7 @@ class EmployeeView extends React.Component {
 
   /* eslint-disable */
   handleEdit = editObj => {
-    // this.props.dispatch(EmployeeActions.loadClient(editObj.id));
-    this.props.history.push('/car/edit');
+    this.props.loadEmployeeRequest(editObj.id);
   };
   render() {
     const columns = [
@@ -140,8 +139,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     loadAllEmployees: () => dispatch(loadAllEmployees()),
-    // getRotation: (rotationID) => dispatch(getRotation(rotationID)),
-    // deleteRotation: (rotationID) => dispatch(deleteRotation(rotationID)),
+    loadEmployeeRequest: makeID => dispatch(loadEmployeeRequest(makeID)),
   };
 }
 

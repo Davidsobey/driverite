@@ -24,7 +24,10 @@ function carReducer(state = initialState, action) {
       return { ...state, carsLoading: true };
     case ACTIONS.GET_ALL_CARS_SUCCESS:
       return { ...state, cars: action.payload, carsLoading: false };
-
+    case ACTIONS.GET_CAR_REQUEST:
+      return state;
+    case ACTIONS.GET_CAR_SUCCESS:
+      return { ...state, car: action.payload };
     // case ACTIONS.DELETE_ROTATIONS:
     //   return {
     //     ...state,
@@ -39,5 +42,4 @@ function carReducer(state = initialState, action) {
   }
 }
 
-export default carReducer
-;
+export default carReducer;
