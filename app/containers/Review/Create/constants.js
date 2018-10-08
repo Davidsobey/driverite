@@ -1,0 +1,11 @@
+/*
+ *
+ * ReviewCreate constants
+ *
+ */
+
+export const CREATE_REVIEW_REQUEST = 'CREATE_REVIEW_REQUEST';
+export const CREATE_REVIEW_SUCCESS = 'CREATE_REVIEW_SUCCESS';
+export const GET_ALL_CARS_REQUEST = 'GET_ALL_CARS_REQUEST';
+export const GET_ALL_CARS_SUCCESS = 'GET_ALL_CARS_SUCCESS';
+

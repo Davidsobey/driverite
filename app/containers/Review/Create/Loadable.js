@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for AdCreate
+ * Asynchronously loads the component for ReviewCreate
  *
  */
 

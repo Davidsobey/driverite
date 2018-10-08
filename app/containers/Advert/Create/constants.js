@@ -1,6 +1,6 @@
 /*
  *
- * RotationCreate constants
+ * AdvertisementCreate constants
  *
  */
 

@@ -1,6 +1,6 @@
 /*
  *
- * Rotation actions
+ * Advertisement actions
  *
  */
 
