@@ -11,6 +11,7 @@ import * as ACTIONS from './constants';
 import { error, success } from '../../../components/Alert/actions';
 import NetworkHandler from '../../../net/NetworkHandler';
 import { DOMAIN } from '../../../config/constants';
+import { loadAllCarModelsSuccess } from './actions';
 
 function* createCar(car) {
   // Load Data
@@ -33,6 +34,22 @@ function* createCar(car) {
   }
 }
 
+function* getAllCarModels() {
+  const Network = new NetworkHandler();
+
+  try {
+    const models = yield Network.fetch(`${DOMAIN}/carModels`, null);
+    yield put(loadAllCarModelsSuccess(models));
+  } catch (errorMsg) {
+    yield put(
+      error({
+        message: `Unable to load models, please try again. ${errorMsg}`,
+      }),
+    );
+  }
+}
+
 export default function* carMakeSagas() {
   yield takeLatest(ACTIONS.CREATE_CAR_REQUEST, createCar);
+  yield takeLatest(ACTIONS.GET_ALL_CAR_MODELS_REQUEST, getAllCarModels);
 }

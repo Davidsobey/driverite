@@ -29,7 +29,7 @@ import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
 import {
-  loadAllCarMakeRequest,
+  loadAllCarMakesRequest,
   loadCarMakeRequest,
   deleteCarMake,
 } from './actions';
@@ -38,7 +38,7 @@ class CarMakeView extends React.Component {
   constructor(props) {
     super(props);
     this.state = { obj: {} };
-    this.props.loadAllCarMakeRequest();
+    this.props.loadAllCarMakesRequest();
   }
 
   handleDelete = (obj) => {
@@ -119,7 +119,7 @@ class CarMakeView extends React.Component {
 }
 CarMakeView.propTypes = {
   history: PropTypes.object,
-  loadAllCarMakeRequest: PropTypes.func,
+  loadAllCarMakesRequest: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -128,7 +128,7 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadAllCarMakeRequest: () => dispatch(loadAllCarMakeRequest()),
+    loadAllCarMakesRequest: () => dispatch(loadAllCarMakesRequest()),
     loadCarMakeRequest: makeID => dispatch(loadCarMakeRequest(makeID)),
     deleteCarMake: carMakeID => dispatch(deleteCarMake(carMakeID)),
   };

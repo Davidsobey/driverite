@@ -13,13 +13,13 @@ import * as ACTIONS from './constants';
 //   };
 // }
 
-export function loadAllCarMakeRequest() {
+export function loadAllCarMakesRequest() {
   return {
     type: ACTIONS.GET_ALL_CAR_MAKES_REQUEST,
   };
 }
 
-export function loadAllCarMakeSuccess(makes) {
+export function loadAllCarMakesSuccess(makes) {
   return {
     type: ACTIONS.GET_ALL_CAR_MAKES_SUCCESS,
     payload: makes,

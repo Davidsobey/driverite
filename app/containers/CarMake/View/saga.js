@@ -7,7 +7,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import * as ACTIONS from './constants';
-import { loadAllCarMakeSuccess, loadCarMakeRequest } from './actions';
+import { loadAllCarMakesSuccess, loadCarMakeRequest } from './actions';
 
 import { error } from '../../../components/Alert/actions';
 import NetworkHandler from '../../../net/NetworkHandler';
@@ -19,7 +19,7 @@ function* getAllCarMakes() {
 
   try {
     const makes = yield Network.fetch(`${DOMAIN}/carMakes`, null);
-    yield put(loadAllCarMakeSuccess(makes));
+    yield put(loadAllCarMakesSuccess(makes));
   } catch (errorMsg) {
     yield put(
       error({
@@ -52,7 +52,7 @@ function* deleteCarMake() {
 
   try {
     const makes = yield Network.fetch(`${DOMAIN}/carMakes`, null);
-    yield put(loadAllCarMakeSuccess(makes));
+    yield put(loadAllCarMakesSuccess(makes));
   } catch (errorMsg) {
     yield put(
       error({

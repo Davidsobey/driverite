@@ -1,6 +1,6 @@
 /**
  *
- * CarMakeCreate
+ * CarModelCreate
  *
  */
 
@@ -10,6 +10,7 @@ import { submit } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { reduxForm, Field, Form } from 'redux-form/immutable';
+import { MenuItem, LinearProgress } from 'material-ui';
 import FormControl from 'material-ui/Form/FormControl';
 
 import injectSaga from '../../../utils/injectSaga';
@@ -19,14 +20,22 @@ import TextField from '../../../components/TextField/style';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import StyledForm from '../../../styles/global-styled-components';
+import Select from '../../../components/Select';
 
 import { createCarModelRequest } from './actions';
 import reducer from './reducer';
 import saga from './saga';
+import { loadAllCarMakesRequest } from '../../CarMake/View/actions';
 
 const FORM_NAME = 'create';
 
 export class CarModelCreate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { obj: {} };
+    this.props.loadAllCarMakesRequest();
+  }
+
   required = value => (value ? undefined : 'Required Field');
 
   defaultSubmit = (values) => {
@@ -52,22 +61,35 @@ export class CarModelCreate extends React.Component {
         >
           <StyledForm>
             <FormControl fullWidth>
-              <Field
-                className="autoMargin"
-                name="name"
-                label="Model Name"
-                component={TextField}
-                InputProps={{
-                  autoFocus: true,
-                }}
-                validate={[this.required]}
-              />
+              {this.props.makesLoading ? (
+                <div>
+                  <LinearProgress color="secondary" />
+                    Loading Car Makes
+                </div>
+              ) : (
+                <div>
+                  <Field
+                    name="make"
+                    label="Make"
+                    width="auto"
+                    component={Select}
+                    validate={[this.required]}
+                  >
+                    {(Array.isArray(this.props.makes.makes) ? this.props.makes.makes : [])
+                      .map(make => (
+                        <MenuItem value={make.id} key={make.id}>
+                          {make.name}
+                        </MenuItem>
+                      ))}
+                  </Field>
+                </div>
+              )}
             </FormControl>
             <FormControl fullWidth>
               <Field
                 className="autoMargin"
-                name="makeID"
-                label="Make Name"
+                name="ModelName"
+                label="Model Name"
                 component={TextField}
                 InputProps={{
                   autoFocus: false,
@@ -97,6 +119,9 @@ CarModelCreate.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
+  loadAllCarMakesRequest: PropTypes.func,
+  makesLoading: PropTypes.bool,
+  makes: PropTypes.object,
 };
 
 const withForm = reduxForm(
@@ -106,15 +131,20 @@ const withForm = reduxForm(
   CarModelCreate,
 );
 
+const mapStateToProps = state => ({
+  makes: state.get('carModelCreate'),
+});
+
 function mapDispatchToProps(dispatch) {
   return {
+    loadAllCarMakesRequest: () => dispatch(loadAllCarMakesRequest()),
     onSubmit: values => dispatch(createCarModelRequest(values)),
     submit: () => dispatch(submit(FORM_NAME)),
   };
 }
 
 const withConnect = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 );
 

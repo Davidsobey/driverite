@@ -18,28 +18,22 @@ const initialState = fromJS({});
 //   return false;
 // }
 
-function rotationReducer(state = initialState, action) {
+function carModelReducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.DELETE_CAR_MODELS_REQUEST:
       return state;
+    case ACTIONS.GET_ALL_CAR_MODELS_REQUEST:
+      console.log('Reducer Load all car models');
+      return { ...state, modelsLoading: true };
     case ACTIONS.GET_ALL_CAR_MODELS_SUCCESS:
-      return { ...state, carModels: action.payload };
+      return { ...state, models: action.payload, modelsLoading: false };
     case ACTIONS.GET_CAR_MODEL_REQUEST:
       return state;
     case ACTIONS.GET_CAR_MODEL_SUCCESS:
       return { ...state, carModel: action.payload };
-    // case ACTIONS.DELETE_ROTATIONS:
-    //   return {
-    //     ...state,
-    //     rotations: state.rotations.filter(obj =>
-    //       filterById(obj.id, action.payload),
-    //     ),
-    //   };
-    // case ACTIONS.GET_ROTATION:
-    //   return state;
     default:
       return state;
   }
 }
 
-export default rotationReducer;
+export default carModelReducer;

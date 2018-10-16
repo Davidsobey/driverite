@@ -1,9 +1,10 @@
 /*
  *
- * RotationCreate constants
+ * ModelCreate constants
  *
  */
 
 export const CREATE_CAR_MODEL_REQUEST = 'CREATE_CAR_MODEL_REQUEST';
-
 export const CREATE_CAR_MODEL_SUCCESS = 'CREATE_CAR_MODEL_SUCCESS';
+export const GET_ALL_CAR_MAKES_REQUEST = 'GET_ALL_CAR_MAKES_REQUEST';
+export const GET_ALL_CAR_MAKES_SUCCESS = 'GET_ALL_CAR_MAKES_SUCCESS';

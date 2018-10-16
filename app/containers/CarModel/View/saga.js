@@ -18,6 +18,7 @@ function* getAllCarModels() {
   const Network = new NetworkHandler();
 
   try {
+    console.log('Saga Load all car models');
     const models = yield Network.fetch(`${DOMAIN}/carModels`, null);
     yield put(loadAllCarModelsSuccess(models));
   } catch (errorMsg) {

@@ -28,7 +28,6 @@ import reducer from './reducer';
 import saga from './saga';
 import { loadAllCarsRequest } from '../../Car/View/actions';
 
-
 const FORM_NAME = 'create';
 
 export class AdCreate extends React.Component {
@@ -43,8 +42,6 @@ export class AdCreate extends React.Component {
   defaultSubmit = (values) => {
     this.props.onSubmit(values.toJS());
   };
-
-  // get all cars to populate dropdown
 
   isSubmit = (event) => {
     if (event.keyCode === 13) {

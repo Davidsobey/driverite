@@ -1,6 +1,6 @@
 /**
  *
- * AdvertCreate
+ * ReviewCreate
  *
  */
 
@@ -27,7 +27,6 @@ import { createReviewRequest } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import { loadAllCarsRequest } from '../../Car/View/actions';
-
 
 const FORM_NAME = 'create';
 
@@ -73,6 +72,7 @@ export class ReviewCreate extends React.Component {
               ) : (
                 <div>
                   <Field
+                    class="autoMargin"
                     name="car"
                     label="Car"
                     width="auto"

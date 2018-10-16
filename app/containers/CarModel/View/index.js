@@ -29,12 +29,6 @@ import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 
 import { loadAllCarModelsRequest, loadCarModelRequest } from './actions';
-// import selectAllCarModelViews from './selectors';
-
-// import reducer from './reducer';
-// import saga from './saga';
-
-// const header = ['CarModelView Team', 'CarModelView Area', 'Description', ''];
 
 class CarModelView extends React.Component {
   constructor(props) {
@@ -106,7 +100,7 @@ class CarModelView extends React.Component {
             </div>
             <ReactTable
               columns={columns}
-              data={this.props.carModel.carModels}
+              data={this.props.carModel.models}
               filterable
               defaultPageSize={10}
               className="-striped -highlight"
@@ -126,7 +120,6 @@ class CarModelView extends React.Component {
 CarModelView.propTypes = {
   history: PropTypes.object,
   loadAllCarModelsRequest: PropTypes.func,
-  // loadAllEmployees: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

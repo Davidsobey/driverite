@@ -10,6 +10,7 @@ import { submit } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { reduxForm, Field, Form } from 'redux-form/immutable';
+import { MenuItem } from 'material-ui';
 import FormControl from 'material-ui/Form/FormControl';
 
 import injectSaga from '../../../utils/injectSaga';
@@ -19,14 +20,23 @@ import TextField from '../../../components/TextField/style';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import StyledForm from '../../../styles/global-styled-components';
+import Select from '../../../components/Select';
+import LinearProgress from '../../../components/LinearProgress';
 
 import { createCarRequest } from './actions';
+import { loadAllCarModelsRequest } from '../../CarModel/View/actions';
 import reducer from './reducer';
 import saga from './saga';
 
 const FORM_NAME = 'create';
 
 export class CarCreate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { obj: {} };
+    this.props.loadAllCarModelsRequest();
+  }
+
   required = value => (value ? undefined : 'Required Field');
 
   defaultSubmit = (values) => {
@@ -43,7 +53,7 @@ export class CarCreate extends React.Component {
     return (
       <Card
         cardTitle="Create Car"
-        cardSubtitle="Create a Car that you can associate Adverts to."
+        cardSubtitle="Create a car that you can associate to adverts and reviews"
       >
         <Form
           onSubmit={this.props.handleSubmit(this.defaultSubmit)}
@@ -76,16 +86,30 @@ export class CarCreate extends React.Component {
               />
             </FormControl>
             <FormControl fullWidth>
-              <Field
-                className="autoMargin"
-                name="modelID"
-                label="Model"
-                component={TextField}
-                InputProps={{
-                  autoFocus: false,
-                }}
-                validate={[this.required]}
-              />
+              {this.props.modelsLoading ? (
+                <div>
+                  <LinearProgress color="secondary" />
+                    Loading Car Models
+                </div>
+              ) : (
+                <div>
+                  <Field
+                    class="autoMargin"
+                    name="model"
+                    label="Model"
+                    width="auto"
+                    component={Select}
+                    validate={[this.required]}
+                  >
+                    {(Array.isArray(this.props.models.models) ? this.props.models.models : [])
+                      .map(model => (
+                        <MenuItem value={model.id} key={model.id}>
+                          {model.name}
+                        </MenuItem>
+                      ))}
+                  </Field>
+                </div>
+              )}
             </FormControl>
             <div className="end">
               <Button
@@ -109,6 +133,9 @@ CarCreate.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
+  loadAllCarModelsRequest: PropTypes.func,
+  modelsLoading: PropTypes.bool,
+  models: PropTypes.object,
 };
 
 const withForm = reduxForm(
@@ -118,15 +145,20 @@ const withForm = reduxForm(
   CarCreate,
 );
 
+const mapStateToProps = state => ({
+  models: state.get('carCreate'),
+});
+
 function mapDispatchToProps(dispatch) {
   return {
+    loadAllCarModelsRequest: () => dispatch(loadAllCarModelsRequest()),
     onSubmit: values => dispatch(createCarRequest(values)),
     submit: () => dispatch(submit(FORM_NAME)),
   };
 }
 
 const withConnect = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 );
 
