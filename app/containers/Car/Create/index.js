@@ -37,10 +37,21 @@ export class CarCreate extends React.Component {
     this.props.loadAllCarModelsRequest();
   }
 
+  state = {
+    selectedFile: null,
+  }
+
   required = value => (value ? undefined : 'Required Field');
 
   defaultSubmit = (values) => {
-    this.props.onSubmit(values.toJS());
+    const file = this.state.selectedFile;
+    this.props.onSubmit(values.toJS(), file);
+  };
+
+  fileSelectedHandler = (event) => {
+    this.setState({
+      selectedFile: event.target.files[0],
+    });
   };
 
   isSubmit = (event) => {
@@ -85,6 +96,17 @@ export class CarCreate extends React.Component {
                 validate={[this.required]}
               />
             </FormControl>
+            <br />
+            <FormControl>
+              <input
+                type="file"
+                name="photo"
+                accept="image/x-png,image/jpeg"
+                label="Photo"
+                cursor="pointer"
+              />
+            </FormControl>
+            <br />
             <FormControl fullWidth>
               {this.props.modelsLoading ? (
                 <div>

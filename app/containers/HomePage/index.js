@@ -118,13 +118,16 @@ class HomePage extends React.Component {
             gutterBottom
           >
             {' '}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Drive Rite was founded by a passionate group of individuals in the motoring industry.
+            We are motivated by adding value to our clients; whether they be business or private.
+            We strive for excellence in every sphere of our business and have built ourselves
+            up on three core values of honesty, integrity and professionalism.
+            With over 30 years of experience in the industry we have a vast dealer partner network.
+            They include all major brands and our dealers are accredited across
+            all major bank panels.
+            Our objective is to structure vehicle finance solutions
+            in a manner that creates a free-drive period.
+            We hope you enjoy your experience and #DriveRite
           </Typography>
         </Paper>
         <Paper className="padding">
@@ -141,13 +144,7 @@ class HomePage extends React.Component {
             gutterBottom
           >
             {' '}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            The top 5 advertisements will go here. Watch this space!
           </Typography>
         </Paper>
         <Paper className="padding">
