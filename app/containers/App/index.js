@@ -45,6 +45,8 @@ import CarModelEdit from '../CarModel/Edit/index';
 import CarEdit from '../Car/Edit/index';
 import EmployeeEdit from '../Employee/Edit/index';
 
+import CarDetail from '../CarDetail/index';
+
 function App() {
   return (
     <div className="content">
@@ -52,6 +54,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path={ROUTES.LOGIN} component={LoginPage} />
+        <Route exact path={ROUTES.CARDETAIL} component={CarDetail} />
         <Dashboard>
           <Route exact path={ROUTES.HOME} component={EmployeeHomeView} />
           <Route exact path={ROUTES.MAKELIST} component={CarMakeView} />
@@ -71,11 +74,11 @@ function App() {
             path={ROUTES.EMPLOYEECREATE}
             component={EmployeeCreate}
           />
-
           <Route exact path={ROUTES.MAKEEDIT} component={CarMakeEdit} />
           <Route exact path={ROUTES.MODELEDIT} component={CarModelEdit} />
           <Route exact path={ROUTES.CAREDIT} component={CarEdit} />
           <Route exact path={ROUTES.EMPLOYEEEDIT} component={EmployeeEdit} />
+
         </Dashboard>
       </Switch>
     </div>

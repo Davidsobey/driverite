@@ -24,3 +24,5 @@ export const CAREDIT = '/car/edit';
 export const EMPLOYEEEDIT = '/employee/edit';
 export const REVIEWEDIT = '/review/edit';
 
+export const CARDETAIL = '/detail';
+

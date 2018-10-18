@@ -14,6 +14,7 @@ import FormControl from 'material-ui/Form/FormControl';
 import TextField from '../../components/TextField/style';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
+import Carousel from '../../components/Carousel';
 
 import injectSaga from '../../utils/injectSaga';
 import injectReducer from '../../utils/injectReducer';
@@ -146,6 +147,7 @@ class HomePage extends React.Component {
             {' '}
             The top 5 advertisements will go here. Watch this space!
           </Typography>
+          <Carousel />
         </Paper>
         <Paper className="padding">
           <Typography
