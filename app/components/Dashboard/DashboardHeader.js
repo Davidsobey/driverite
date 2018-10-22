@@ -38,7 +38,7 @@ const DashboardHeader = ({
         />
       </div>
       <Link className="drawerLogo" to="/home">
-        <img src={Logo} className="drawerLogo" alt="Standard Bank" />
+        <img src={Logo} className="drawerLogo" alt="" />
       </Link>
       <div>
         <IconButton

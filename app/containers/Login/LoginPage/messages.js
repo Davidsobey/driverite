@@ -16,6 +16,6 @@ export default defineMessages({
   },
   logoDescription: {
     id: 'app.container.LoginPage.logoDescription',
-    defaultMessage: 'Standard Bank Logo',
+    defaultMessage: '',
   },
 });

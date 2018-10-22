@@ -59,7 +59,7 @@ class HomePage extends React.Component {
       <div className={classes.root}>
         <StyledAppBar className="posRel" position="relative">
           <StyledToolBar>
-            <Button component={Link} color="inherit" to="/home">
+            <Button component={Link} color="inherit" to="/">
               <img src={drLogo} alt="Drive Rite" />
             </Button>
           </StyledToolBar>
@@ -75,35 +75,33 @@ class HomePage extends React.Component {
                 Car Details
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
-                carID
+                Car Make
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                1{' '}
+                Ford
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
-                responseIDs
+                Model
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                null{' '}
+                Mustang
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
-                writeUp
+                Variant
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                This is an advertisement test
-              </Typography>
-
-              <Typography className="orange-color" variant="title" gutterBottom>
-                price
-              </Typography>
-              <Typography className="white-color" variant="body1" gutterBottom>
-                100000{' '}
+                Shelby GT
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
-                photoPath
+                Write Up
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                link{' '}
+                The Shelby Mustang is a high performance variant of the Ford
+                Mustang which was built by Shelby American from 1965 to 1968,
+                and from 1969 to 1970 by Ford. Following the introduction of the
+                fifth generation Ford Mustang in 2005, the Shelby nameplate was
+                revived as a new high-performance model, this time designed and
+                built by Ford.
               </Typography>
             </Paper>
           </Grid>
@@ -116,9 +114,27 @@ class HomePage extends React.Component {
               >
                 GALLERY
               </Typography>
-              <Typography className="white-color" variant="body2" gutterBottom>
-                Image
-              </Typography>
+              <img
+                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/SAI_6937.jpg"
+                className="detailImg"
+                alt=""
+              />
+              <img
+                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/SAI_7046.jpg"
+                className="detailImg"
+                alt=""
+              />
+              <img
+                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/SAI_7550.jpg"
+                className="detailImg"
+                alt=""
+              />
+              <img
+                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/Winnie.jpg"
+                className="detailImg"
+                alt=""
+              />
+              <img src="" className="detailImg" alt="" />
             </Paper>
           </Grid>
         </Grid>

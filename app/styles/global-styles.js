@@ -1,5 +1,6 @@
 import { injectGlobal } from 'styled-components';
 import photo from '../images/dark_mosaic.png';
+import { width } from 'window-size';
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   html,
@@ -78,7 +79,13 @@ injectGlobal`
     padding: 50px;
     background-color: transparent !important;
   }
-
+  
+  .padding-short{
+    padding: 10px;
+    padding-top: 50px;
+    background-color: transparent !important;
+  }
+ 
   .posRel{
     position: relative;
     z-index: 100;   
@@ -146,4 +153,8 @@ injectGlobal`
     word-wrap: normal;
     white-space: normal;
     line-break: auto;
-}`;
+}
+  .detailImg{
+    max-width: 100%;
+    padding: 3px;
+  }`;

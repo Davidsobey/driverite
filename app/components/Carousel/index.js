@@ -4,30 +4,36 @@ import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import { Link } from 'react-router-dom';
+
 import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import Button from '../../components/Button';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath: 'http://static.flickr.com/43/102997171_f9263d8797_b.jpg',
+    label: 'Mustgang',
+    imgPath:
+      'https://www.cytokines2015.com/wp-content/uploads/2018/03/cars-J.jpeg',
   },
   {
-    label: 'Bird',
-    imgPath: 'http://static.flickr.com/43/102997171_f9263d8797_b.jpg',
+    label: 'Ferrari SUV',
+    imgPath:
+      'https://cdn.images.express.co.uk/img/dynamic/24/590x/Ferrari-SUV-new-car-864627.jpg',
   },
   {
-    label: 'Bali, Indonesia',
-    imgPath: 'http://static.flickr.com/43/102997171_f9263d8797_b.jpg',
+    label: 'Mustang',
+    imgPath:
+      'https://img-ik.cars.co.za/images/2018/10/Mustang%20Bullitt/tr:n-news_large/MustangBullitt.jpg',
   },
   {
-    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-    imgPath: 'http://static.flickr.com/43/102997171_f9263d8797_b.jpg',
+    label: 'Ferrari',
+    imgPath:
+      'https://dmi3w0goirzgw.cloudfront.net/gallery-images/840x560/402000/800/402876.jpg',
   },
 ];
 
@@ -53,6 +59,13 @@ const styles = {
   },
   mobileStepper: {
     backgroundColor: 'transparent',
+  },
+  centera: {
+    display: 'grid',
+  },
+  up: {
+    marginTop: '-35px',
+    color: 'orange',
   },
 };
 
@@ -96,7 +109,7 @@ class SwipeableTextMobileStepper extends React.Component {
           enableMouseEvents
         >
           {tutorialSteps.map((step, index) => (
-            <div key={step.label}>
+            <div key={step.label} className={classes.centera}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <img
                   className={classes.img}
@@ -104,6 +117,14 @@ class SwipeableTextMobileStepper extends React.Component {
                   alt={step.label}
                 />
               ) : null}
+              <Button
+                component={Link}
+                className={classes.up}
+                color="inherit"
+                to="/detail"
+              >
+                View Car
+              </Button>
             </div>
           ))}
         </AutoPlaySwipeableViews>

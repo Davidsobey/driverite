@@ -105,7 +105,7 @@ class HomePage extends React.Component {
           </div>
         </div>
 
-        <Paper className="padding">
+        <Paper className="padding-short">
           <Typography
             className="orange-color center"
             variant="display1"
@@ -119,37 +119,31 @@ class HomePage extends React.Component {
             gutterBottom
           >
             {' '}
-            Drive Rite was founded by a passionate group of individuals in the motoring industry.
-            We are motivated by adding value to our clients; whether they be business or private.
-            We strive for excellence in every sphere of our business and have built ourselves
-            up on three core values of honesty, integrity and professionalism.
-            With over 30 years of experience in the industry we have a vast dealer partner network.
-            They include all major brands and our dealers are accredited across
-            all major bank panels.
-            Our objective is to structure vehicle finance solutions
-            in a manner that creates a free-drive period.
-            We hope you enjoy your experience and #DriveRite
+            Drive Rite was founded by a passionate group of individuals in the
+            motoring industry. We are motivated by adding value to our clients;
+            whether they be business or private. We strive for excellence in
+            every sphere of our business and have built ourselves up on three
+            core values of honesty, integrity and professionalism. With over 30
+            years of experience in the industry we have a vast dealer partner
+            network. They include all major brands and our dealers are
+            accredited across all major bank panels. Our objective is to
+            structure vehicle finance solutions in a manner that creates a
+            free-drive period. We hope you enjoy your experience and #DriveRite
           </Typography>
         </Paper>
-        <Paper className="padding">
-          <Typography
-            className="orange-color center"
-            variant="display1"
-            gutterBottom
-          >
-            GALLERY
-          </Typography>
-          <Typography
-            className="white-color center"
-            variant="body2"
-            gutterBottom
-          >
-            {' '}
-            The top 5 advertisements will go here. Watch this space!
-          </Typography>
-          <Carousel />
+        <Typography
+          className="orange-color center"
+          variant="display1"
+          gutterBottom
+        >
+          GALLERY
+        </Typography>
+        <Paper className="padding center">
+          <div>
+            <Carousel />
+          </div>
         </Paper>
-        <Paper className="padding">
+        <Paper className="padding-short">
           <Typography
             className="orange-color center"
             variant="display1"
