@@ -96,17 +96,6 @@ export class CarCreate extends React.Component {
                 validate={[this.required]}
               />
             </FormControl>
-            <br />
-            <FormControl>
-              <input
-                type="file"
-                name="photo"
-                accept="image/x-png,image/jpeg"
-                label="Photo"
-                cursor="pointer"
-              />
-            </FormControl>
-            <br />
             <FormControl fullWidth>
               {this.props.modelsLoading ? (
                 <div>

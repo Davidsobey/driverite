@@ -39,7 +39,7 @@ import ReviewCreate from '../Review/Create/index';
 import CarModelCreate from '../CarModel/Create/index';
 import CarCreate from '../Car/Create/index';
 import EmployeeCreate from '../Employee/Create/index';
-
+import CarPhotoCreate from '../CarPhoto/Create';
 import CarMakeEdit from '../CarMake/Edit/index';
 import CarModelEdit from '../CarModel/Edit/index';
 import CarEdit from '../Car/Edit/index';
@@ -66,7 +66,7 @@ function App() {
           <Route exact path={ROUTES.REVIEWCREATE} component={ReviewCreate} />
           <Route exact path={ROUTES.MAKECREATE} component={CarMakeCreate} />
           <Route exact path={ROUTES.ADCREATE} component={AdCreate} />
-
+          <Route exact path={ROUTES.CARPHOTOCREATE} component={CarPhotoCreate} />
           <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />
           <Route exact path={ROUTES.CARCREATE} component={CarCreate} />
           <Route
