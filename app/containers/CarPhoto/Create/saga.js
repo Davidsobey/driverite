@@ -13,12 +13,13 @@ import NetworkHandler from '../../../net/NetworkHandler';
 import { DOMAIN } from '../../../config/constants';
 import { loadAllCarsSuccess } from './actions';
 
-function* createCarPhoto(carPhoto) {
+function* createCarPhoto(car) {
   // Load Data
   const Network = new NetworkHandler();
-
+  const carID = car.payload[0].car;
+  const photos = car.payload[1];
   try {
-    yield Network.post(`${DOMAIN}/carPhotos/${carPhoto.payload.carID}`, carPhoto.payload);
+    yield Network.post(`${DOMAIN}/carPhotos/${carID}`, photos);
     yield put(
       success({
         message: 'Upload Successful',

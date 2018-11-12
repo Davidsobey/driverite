@@ -48,7 +48,6 @@ export class CarPhotoCreate extends React.Component {
   }
 
   onaddfile = (error, file) => {
-    console.log(`Adding this file: ${file.file}`);
     this.state.files.push(file.file);
   }
 
@@ -178,7 +177,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     loadAllCarsRequest: () => dispatch(loadAllCarsRequest()),
-    onSubmit: values => dispatch(createCarPhotoRequest(values)),
+    onSubmit: (values, photos) => dispatch(createCarPhotoRequest(values, photos)),
     submit: () => dispatch(submit(FORM_NAME)),
   };
 }
