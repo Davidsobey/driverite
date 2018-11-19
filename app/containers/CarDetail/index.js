@@ -106,7 +106,7 @@ class HomePage extends React.Component {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper className="padding">
+            <Paper className="padding-short">
               <Typography
                 className="orange-color"
                 variant="display1"

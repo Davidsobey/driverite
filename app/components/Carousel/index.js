@@ -14,7 +14,7 @@ import Button from '../../components/Button';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const tutorialSteps = [
+const cars = [
   {
     label: 'Mustgang',
     imgPath:
@@ -66,6 +66,7 @@ const styles = {
   up: {
     marginTop: '-35px',
     color: 'orange',
+    height: '100%',
   },
 };
 
@@ -91,15 +92,15 @@ class SwipeableTextMobileStepper extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, data } = this.props;
     const { activeStep } = this.state;
-    const maxSteps = tutorialSteps.length;
+    const maxSteps = cars.length;
 
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
           <Typography className={classes.white}>
-            {tutorialSteps[activeStep].label}
+            {data[activeStep].car.variant}
           </Typography>
         </Paper>
         <AutoPlaySwipeableViews
@@ -108,7 +109,7 @@ class SwipeableTextMobileStepper extends React.Component {
           onChangeIndex={this.handleStepChange}
           enableMouseEvents
         >
-          {tutorialSteps.map((step, index) => (
+          {cars.map((step, index) => (
             <div key={step.label} className={classes.centera}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <img
@@ -170,6 +171,7 @@ class SwipeableTextMobileStepper extends React.Component {
 SwipeableTextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(

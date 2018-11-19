@@ -12,3 +12,16 @@ export function createUser(user) {
     payload: user,
   };
 }
+
+export function loadAllAdRequest() {
+  return {
+    type: ACTIONS.LOAD_AD_REQUEST,
+  };
+}
+
+export function loadAllAdSuccess(ads) {
+  return {
+    type: ACTIONS.LOAD_AD_SUCCESS,
+    payload: ads,
+  };
+}
