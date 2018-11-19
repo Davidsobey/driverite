@@ -1,6 +1,6 @@
 /**
  *
- * CarCreate
+ * CarPhotoCreate
  *
  */
 
@@ -62,6 +62,7 @@ export class CarPhotoCreate extends React.Component {
   };
 
   handleInit() {
+    // eslint-disable-next-line no-console
     console.log('FilePond instance has initialised', this.pond);
   }
 
