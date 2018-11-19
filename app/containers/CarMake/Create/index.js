@@ -53,7 +53,6 @@ export class CarMakeCreate extends React.Component {
           <StyledForm>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
                 name="name"
                 label="Make Name"
                 component={TextField}

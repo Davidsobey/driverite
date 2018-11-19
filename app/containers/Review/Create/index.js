@@ -72,7 +72,6 @@ export class ReviewCreate extends React.Component {
               ) : (
                 <div>
                   <Field
-                    class="autoMargin"
                     name="car"
                     label="Car"
                     width="auto"
@@ -89,7 +88,6 @@ export class ReviewCreate extends React.Component {
                 </div>
               )}
               <Field
-                className="autoMargin"
                 name="writeup"
                 label="Write Up"
                 component={TextField}

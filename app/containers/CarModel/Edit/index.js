@@ -54,7 +54,6 @@ export class CarModelEdit extends React.Component {
             <StyledForm>
               <FormControl fullWidth>
                 <Field
-                  className="autoMargin"
                   name="name"
                   label="Model Name"
                   component={TextField}
@@ -66,7 +65,6 @@ export class CarModelEdit extends React.Component {
               </FormControl>
               <FormControl fullWidth>
                 <Field
-                  className="autoMargin"
                   name="makeID"
                   label="Make Name"
                   component={TextField}

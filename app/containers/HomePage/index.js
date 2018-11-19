@@ -184,7 +184,6 @@ class HomePage extends React.Component {
               <StyledForm>
                 <FormControl fullWidth>
                   <Field
-                    className="autoMargin"
                     name="name"
                     label="Name"
                     component={TextField}
@@ -194,7 +193,6 @@ class HomePage extends React.Component {
                     validate={[this.required]}
                   />
                   <Field
-                    className="autoMargin"
                     name="email"
                     label="Email"
                     component={TextField}
@@ -204,7 +202,6 @@ class HomePage extends React.Component {
                     validate={[this.required]}
                   />
                   <Field
-                    className="autoMargin"
                     name="phone"
                     label="Phone Number"
                     component={TextField}
@@ -240,6 +237,7 @@ HomePage.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   loadAllAdRequest: PropTypes.func.isRequired,
+  ads: PropTypes.object,
 };
 const mapStateToProps = state => ({
   ads: state.get('ads'),

@@ -86,7 +86,6 @@ export class AdCreate extends React.Component {
                 </div>
               )}
               <Field
-                className="autoMargin"
                 name="price"
                 label="Price"
                 component={TextField}
@@ -96,7 +95,6 @@ export class AdCreate extends React.Component {
                 validate={[this.required]}
               />
               <Field
-                className="autoMargin"
                 name="writeup"
                 label="Write Up"
                 component={TextField}

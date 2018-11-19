@@ -87,7 +87,6 @@ export class CarModelCreate extends React.Component {
             </FormControl>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
                 name="ModelName"
                 label="Model Name"
                 component={TextField}
