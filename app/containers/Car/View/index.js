@@ -101,7 +101,7 @@ class CarView extends React.Component {
         >
           <div>
             <div className="content end">
-              <Button href="/car/create"> Create New Car</Button>
+              <Button href="/car/create">Create New Car</Button>
             </div>
             <ReactTable
               columns={columns}

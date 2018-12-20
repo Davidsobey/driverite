@@ -16,9 +16,9 @@ import { loadAllCarMakesSuccess } from './actions';
 function* createCarModel(carModel) {
   // Load Data
   const Network = new NetworkHandler();
-
+  console.log(carModel);
   try {
-    yield Network.post(`${DOMAIN}/carModels`, carModel.payload);
+    yield Network.post(`${DOMAIN}/carModels/${carModel.payload.make}`, carModel.payload);
     yield put(
       success({
         message: 'Creation Successful',

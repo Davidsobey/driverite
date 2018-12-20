@@ -18,7 +18,7 @@ function* createReview(review) {
   const Network = new NetworkHandler();
 
   try {
-    yield Network.post(`${DOMAIN}/reviews`, review.payload);
+    yield Network.post(`${DOMAIN}/reviews/${review.payload.car}`, review.payload);
     yield put(
       success({
         message: 'Creation Successful',

@@ -25,13 +25,6 @@ import RegularCard from '../../../components/Card';
 import CustomModal from '../../../components/Modal';
 import { loadAllReviewsRequest } from './actions';
 
-// import selectAllCarViews from './selectors';
-
-// import reducer from './reducer';
-// import saga from './saga';
-
-// const header = ['CarView Team', 'CarView Area', 'Description', ''];
-
 class ReviewView extends React.Component {
   constructor(props) {
     super(props);
@@ -58,28 +51,16 @@ class ReviewView extends React.Component {
   render() {
     const columns = [
       {
-        Header: 'Make',
-        accessor: 'car.model.make.name',
-      },
-      {
-        Header: 'Model',
-        accessor: 'car.model.name',
-      },
-      {
-        Header: 'Variant',
-        accessor: 'car.variant',
-      },
-      {
-        Header: 'Mileage',
-        accessor: 'car.mileage',
+        Header: 'Car',
+        accessor: 'carID',
       },
       {
         Header: 'Write Up',
         accessor: 'writeUp',
       },  
       {
-        PhotoLink: 'Photo',
-        accessor: 'photoPath',
+        Header: 'Rating',
+        accessor: 'rating',
       },
       {
         Header: 'Edit/Delete',
