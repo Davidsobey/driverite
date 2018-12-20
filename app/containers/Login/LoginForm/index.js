@@ -8,7 +8,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import { submit } from 'redux-form';
+// import { submit } from 'redux-form';
 import { connect } from 'react-redux';
 import FormControl from 'material-ui/Form/FormControl';
 import IconButton from 'material-ui/IconButton';
@@ -17,6 +17,7 @@ import InputAdornment from 'material-ui/Input/InputAdornment';
 import { reduxForm, Field, Form } from 'redux-form/immutable';
 import Person from 'material-ui-icons/Person';
 import Lock from 'material-ui-icons/Lock';
+import { Link } from 'react-router-dom';
 
 import injectReducer from '../../../utils/injectReducer';
 import injectSaga from '../../../utils/injectSaga';
@@ -51,7 +52,7 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    const { login } = this.props;
+    // const { login } = this.props;
     return (
       <div>
         <LoginWrapper>
@@ -101,12 +102,7 @@ class LoginForm extends React.Component {
             </FormControl>
             <LoginButtonWrapper>
               <LoginInnerButtonWrapper>
-                <Button
-                  variant="raised"
-                  color="primary"
-                  tabIndex={0}
-                  onClick={login}
-                >
+                <Button component={Link} color="inherit" to="/login">
                   Login
                 </Button>
               </LoginInnerButtonWrapper>
@@ -139,7 +135,7 @@ const withForm = reduxForm(
 
 const mapDispatchToProps = dispatch => ({
   onLoginSubmit: values => dispatch(loginAction(values)),
-  login: () => dispatch(submit(FORM_NAME)),
+  // login: () => dispatch(submit(FORM_NAME)),
 });
 
 const withConnect = connect(

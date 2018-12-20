@@ -19,9 +19,10 @@ import Carousel from '../../components/Carousel';
 import injectSaga from '../../utils/injectSaga';
 import injectReducer from '../../utils/injectReducer';
 
-import { createUser } from './actions';
 import reducer from './reducer';
 import saga from './saga';
+
+import { createUser, loadAllAdRequest } from './actions';
 
 import { StyledAppBar, StyledToolBar } from './style';
 import StyledForm from '../../styles/global-styled-components';
@@ -69,10 +70,29 @@ const FORM_NAME = 'home_page';
 
 // eslint-disable-next-line
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props.loadAllAdRequest();
+  }
+
   required = value => (value ? undefined : 'Required Field');
 
   defaultSubmit = (values) => {
     this.props.onSubmit(values.toJS());
+  };
+
+  loadData = () => {
+    try {
+      if (this.props.ads.count() > 0) {
+        return this.props.ads;
+      }
+      return [];
+    } catch (error) {
+      if (this.props.ads.ads.length > 0) {
+        return this.props.ads;
+      }
+      return [];
+    }
   };
 
   isSubmit = (event) => {
@@ -88,7 +108,7 @@ class HomePage extends React.Component {
         <StyledAppBar className="posRel" position="relative">
           <StyledToolBar>
             <img src={drLogo} alt="Drive Rite" />
-            <Button component={Link} color="inherit" to="/login">
+            <Button component={Link} color="inherit" to="/home">
               Login
             </Button>
           </StyledToolBar>
@@ -140,7 +160,11 @@ class HomePage extends React.Component {
         </Typography>
         <Paper className="padding center">
           <div>
-            <Carousel />
+            {this.loadData().length > 0 ? (
+              <Carousel data={this.loadData()} />
+            ) : (
+              <div />
+            )}
           </div>
         </Paper>
         <Paper className="padding-short">
@@ -160,7 +184,6 @@ class HomePage extends React.Component {
               <StyledForm>
                 <FormControl fullWidth>
                   <Field
-                    className="autoMargin"
                     name="name"
                     label="Name"
                     component={TextField}
@@ -170,7 +193,6 @@ class HomePage extends React.Component {
                     validate={[this.required]}
                   />
                   <Field
-                    className="autoMargin"
                     name="email"
                     label="Email"
                     component={TextField}
@@ -180,7 +202,6 @@ class HomePage extends React.Component {
                     validate={[this.required]}
                   />
                   <Field
-                    className="autoMargin"
                     name="phone"
                     label="Phone Number"
                     component={TextField}
@@ -215,7 +236,28 @@ HomePage.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
+  loadAllAdRequest: PropTypes.func.isRequired,
+  ads: PropTypes.object,
 };
+const mapStateToProps = state => ({
+  ads: state.get('ads'),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmit: values => dispatch(createUser(values)),
+    submit: () => dispatch(submit(FORM_NAME)),
+    loadAllAdRequest: () => dispatch(loadAllAdRequest()),
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+const withReducer = injectReducer({ key: 'ads', reducer });
+const withSaga = injectSaga({ key: 'ads', saga });
 
 const withForm = reduxForm(
   {
@@ -223,21 +265,6 @@ const withForm = reduxForm(
   },
   HomePage,
 );
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onSubmit: values => dispatch(createUser(values)),
-    submit: () => dispatch(submit(FORM_NAME)),
-  };
-}
-
-const withConnect = connect(
-  null,
-  mapDispatchToProps,
-);
-
-const withReducer = injectReducer({ key: 'HomePage', reducer });
-const withSaga = injectSaga({ key: 'HomePage', saga });
 
 export default compose(
   withForm,

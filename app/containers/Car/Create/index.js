@@ -74,7 +74,6 @@ export class CarCreate extends React.Component {
           <StyledForm>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
                 name="variant"
                 label="Variant"
                 component={TextField}
@@ -86,7 +85,7 @@ export class CarCreate extends React.Component {
             </FormControl>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
+                className=""
                 name="mileage"
                 label="Mileage"
                 component={TextField}
@@ -105,7 +104,6 @@ export class CarCreate extends React.Component {
               ) : (
                 <div>
                   <Field
-                    class="autoMargin"
                     name="model"
                     label="Model"
                     width="auto"

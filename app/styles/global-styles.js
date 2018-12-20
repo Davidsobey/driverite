@@ -1,6 +1,5 @@
 import { injectGlobal } from 'styled-components';
 import photo from '../images/dark_mosaic.png';
-import { width } from 'window-size';
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   html,
@@ -118,12 +117,13 @@ injectGlobal`
   }
 
   .img60{
-    width: 60%
-    height: 60%
+    width: 60%;
+    height: 60%;
+    min-width: 285px;
   }
   .img30{
-    width: 30%
-    height: 30%
+    width: 30%;
+    height: 30%;
   }
   .pad120{
     padding-top: 120px;

@@ -57,7 +57,6 @@ export class EmployeeCreate extends React.Component {
           <StyledForm>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
                 name="name"
                 label="Employee Name"
                 component={TextField}
@@ -69,7 +68,6 @@ export class EmployeeCreate extends React.Component {
             </FormControl>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
                 name="email"
                 label="Email"
                 component={TextField}
@@ -81,7 +79,6 @@ export class EmployeeCreate extends React.Component {
             </FormControl>
             <FormControl fullWidth>
               <Field
-                className="autoMargin"
                 name="phone"
                 label="Phone"
                 component={TextField}

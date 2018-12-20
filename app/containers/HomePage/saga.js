@@ -7,6 +7,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 import * as ACTIONS from './constants';
 
+import { loadAllAdSuccess } from './actions';
+
 import { error, success } from '../../components/Alert/actions';
 import NetworkHandler from '../../net/NetworkHandler';
 import { DOMAIN } from '../../config/constants';
@@ -31,6 +33,23 @@ function* createUser(user) {
   }
 }
 
+function* loadAdRequest() {
+  // Load Data
+  const Network = new NetworkHandler();
+
+  try {
+    const ads = yield Network.fetch(`${DOMAIN}/ads`, null);
+    yield put(loadAllAdSuccess(ads));
+  } catch (errorMsg) {
+    yield put(
+      error({
+        message: `Unable to load data, please try again.${errorMsg}`,
+      }),
+    );
+  }
+}
+
 export default function* UserSagas() {
   yield takeLatest(ACTIONS.CREATE_USER_REQUEST, createUser);
+  yield takeLatest(ACTIONS.LOAD_AD_REQUEST, loadAdRequest);
 }

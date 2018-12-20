@@ -99,7 +99,6 @@ export class CarPhotoCreate extends React.Component {
               ) : (
                 <div>
                   <Field
-                    class="autoMargin"
                     name="car"
                     label="Car"
                     width="auto"
