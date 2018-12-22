@@ -18,7 +18,7 @@ function* createCar(car) {
   const Network = new NetworkHandler();
 
   try {
-    yield Network.post(`${DOMAIN}/cars`, car.payload);
+    yield Network.post(`${DOMAIN}/cars/${car.payload.model}`, car.payload);
     yield put(
       success({
         message: 'Creation Successful',
@@ -28,7 +28,7 @@ function* createCar(car) {
   } catch (errorMsg) {
     yield put(
       error({
-        message: `Unable to load data, please try again.${errorMsg}`,
+        message: `Unable to create car, please try again.${errorMsg}`,
       }),
     );
   }

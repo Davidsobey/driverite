@@ -87,7 +87,7 @@ export class CarModelCreate extends React.Component {
             </FormControl>
             <FormControl fullWidth>
               <Field
-                name="ModelName"
+                name="name"
                 label="Model Name"
                 component={TextField}
                 InputProps={{
@@ -120,7 +120,7 @@ CarModelCreate.propTypes = {
   submit: PropTypes.func.isRequired,
   loadAllCarMakesRequest: PropTypes.func,
   makesLoading: PropTypes.bool,
-  makes: PropTypes.object,
+  makes: PropTypes.array,
 };
 
 const withForm = reduxForm(
