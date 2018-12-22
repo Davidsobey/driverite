@@ -84,14 +84,14 @@ class HomePage extends React.Component {
   loadData = () => {
     try {
       if (this.props.ads.count() > 0) {
-        return this.props.ads;
+        return true;
       }
-      return [];
+      return false;
     } catch (error) {
       if (this.props.ads.ads.length > 0) {
-        return this.props.ads;
+        return true;
       }
-      return [];
+      return false;
     }
   };
 
@@ -160,11 +160,7 @@ class HomePage extends React.Component {
         </Typography>
         <Paper className="padding center">
           <div>
-            {this.loadData().length > 0 ? (
-              <Carousel data={this.loadData()} />
-            ) : (
-              <div />
-            )}
+            {this.loadData() ? <Carousel data={this.loadData()} /> : <div />}
           </div>
         </Paper>
         <Paper className="padding-short">

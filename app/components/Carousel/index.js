@@ -100,7 +100,7 @@ class SwipeableTextMobileStepper extends React.Component {
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
           <Typography className={classes.white}>
-            {data[activeStep].car.variant}
+            {cars[activeStep].label}
           </Typography>
         </Paper>
         <AutoPlaySwipeableViews
