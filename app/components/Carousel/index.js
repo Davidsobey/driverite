@@ -92,7 +92,7 @@ class SwipeableTextMobileStepper extends React.Component {
   };
 
   render() {
-    const { classes, theme, data } = this.props;
+    const { classes, theme } = this.props;
     const { activeStep } = this.state;
     const maxSteps = cars.length;
 
@@ -171,7 +171,6 @@ class SwipeableTextMobileStepper extends React.Component {
 SwipeableTextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  data: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(
