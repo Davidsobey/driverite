@@ -36,9 +36,9 @@ function* createUser(user) {
 function* loadAdRequest() {
   // Load Data
   const Network = new NetworkHandler();
-
+  const count = 5;
   try {
-    const ads = yield Network.fetch(`${DOMAIN}/ads`, null);
+    const ads = yield Network.fetch(`${DOMAIN}/ads/WithPhotos/${count}`, null);
     yield put(loadAllAdSuccess(ads));
   } catch (errorMsg) {
     yield put(
