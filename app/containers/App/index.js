@@ -44,8 +44,9 @@ import CarMakeEdit from '../CarMake/Edit/index';
 import CarModelEdit from '../CarModel/Edit/index';
 import CarEdit from '../Car/Edit/index';
 import EmployeeEdit from '../Employee/Edit/index';
-
 import CarDetail from '../CarDetail/index';
+
+import withAuth from '../../middlewares/withAuth';
 
 function App() {
   return (
@@ -56,30 +57,82 @@ function App() {
         <Route exact path={ROUTES.LOGIN} component={LoginPage} />
         <Route exact path={ROUTES.CARDETAIL} component={CarDetail} />
         <Dashboard>
-          <Route exact path={ROUTES.HOME} component={EmployeeHomeView} />
-          <Route exact path={ROUTES.MAKELIST} component={CarMakeView} />
-          <Route exact path={ROUTES.MODELLIST} component={CarModelView} />
-          <Route exact path={ROUTES.CARLIST} component={CarView} />
-          <Route exact path={ROUTES.ADLIST} component={AdView} />
-          <Route exact path={ROUTES.EMPLOYEELIST} component={EmployeeView} />
-          <Route exact path={ROUTES.REVIEWLIST} component={ReviewView} />
-          <Route exact path={ROUTES.REVIEWCREATE} component={ReviewCreate} />
-          <Route exact path={ROUTES.MAKECREATE} component={CarMakeCreate} />
-          <Route exact path={ROUTES.ADCREATE} component={AdCreate} />
-          <Route exact path={ROUTES.CARPHOTOCREATE} component={CarPhotoCreate} />
-          <Route exact path={ROUTES.MODELCREATE} component={CarModelCreate} />
-          <Route exact path={ROUTES.CARCREATE} component={CarCreate} />
+          <Route
+            exact
+            path={ROUTES.HOME}
+            component={withAuth(EmployeeHomeView)}
+          />
+          <Route
+            exact
+            path={ROUTES.MAKELIST}
+            component={withAuth(CarMakeView)}
+          />
+          <Route
+            exact
+            path={ROUTES.MODELLIST}
+            component={withAuth(CarModelView)}
+          />
+          <Route exact path={ROUTES.CARLIST} component={withAuth(CarView)} />
+          <Route exact path={ROUTES.ADLIST} component={withAuth(AdView)} />
+          <Route
+            exact
+            path={ROUTES.EMPLOYEELIST}
+            component={withAuth(EmployeeView)}
+          />
+          <Route
+            exact
+            path={ROUTES.REVIEWLIST}
+            component={withAuth(ReviewView)}
+          />
+          <Route
+            exact
+            path={ROUTES.REVIEWCREATE}
+            component={withAuth(ReviewCreate)}
+          />
+          <Route
+            exact
+            path={ROUTES.MAKECREATE}
+            component={withAuth(CarMakeCreate)}
+          />
+          <Route exact path={ROUTES.ADCREATE} component={withAuth(AdCreate)} />
+          <Route
+            exact
+            path={ROUTES.CARPHOTOCREATE}
+            component={withAuth(CarPhotoCreate)}
+          />
+          <Route
+            exact
+            path={ROUTES.MODELCREATE}
+            component={withAuth(CarModelCreate)}
+          />
+          <Route
+            exact
+            path={ROUTES.CARCREATE}
+            component={withAuth(CarCreate)}
+          />
           <Route
             exact
             path={ROUTES.EMPLOYEECREATE}
-            component={EmployeeCreate}
+            component={withAuth(EmployeeCreate)}
           />
-          <Route exact path={ROUTES.MAKEEDIT} component={CarMakeEdit} />
-          <Route exact path={ROUTES.MODELEDIT} component={CarModelEdit} />
-          <Route exact path={ROUTES.CAREDIT} component={CarEdit} />
-          <Route exact path={ROUTES.EMPLOYEEEDIT} component={EmployeeEdit} />
-
+          <Route
+            exact
+            path={ROUTES.MAKEEDIT}
+            component={withAuth(CarMakeEdit)}
+          />
+          <Route
+            exact
+            path={ROUTES.MODELEDIT}
+            component={withAuth(CarModelEdit)}
+          />
+          <Route exact path={ROUTES.CAREDIT} component={withAuth(CarEdit)} />
+          <Route
+            exact
+            path={ROUTES.EMPLOYEEEDIT}
+            component={withAuth(EmployeeEdit)}
+          />
         </Dashboard>
+        <Route path="*" component={LoginPage} />
       </Switch>
     </div>
   );

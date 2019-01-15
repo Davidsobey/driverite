@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 import Paper from 'material-ui/Paper';
@@ -29,11 +30,6 @@ const cars = [
     label: 'Mustang',
     imgPath:
       'https://img-ik.cars.co.za/images/2018/10/Mustang%20Bullitt/tr:n-news_large/MustangBullitt.jpg',
-  },
-  {
-    label: 'Ferrari',
-    imgPath:
-      'https://dmi3w0goirzgw.cloudfront.net/gallery-images/840x560/402000/800/402876.jpg',
   },
 ];
 
@@ -92,15 +88,26 @@ class SwipeableTextMobileStepper extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, ads } = this.props;
     const { activeStep } = this.state;
-    const maxSteps = cars.length;
+    const maxSteps = ads.ads.length;
+
+    const MyLink = props => (
+      <Link
+        to={{
+          pathname: '/page',
+          data: props, // your data array of objects
+        }}
+      />
+    );
 
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
           <Typography className={classes.white}>
-            {cars[activeStep].label}
+            {`${ads.ads[activeStep].car.model.make.name} ${
+              ads.ads[activeStep].car.model.name
+            } ${ads.ads[activeStep].car.variant}`}
           </Typography>
         </Paper>
         <AutoPlaySwipeableViews
@@ -109,20 +116,19 @@ class SwipeableTextMobileStepper extends React.Component {
           onChangeIndex={this.handleStepChange}
           enableMouseEvents
         >
-          {cars.map((step, index) => (
-            <div key={step.label} className={classes.centera}>
-              {Math.abs(activeStep - index) <= 2 ? (
+          {ads.ads.map((step, index) => (
+            <div key={step.car.variant} className={classes.centera}>
+              {Math.abs(activeStep - index) <= 3 ? (
                 <img
                   className={classes.img}
-                  src={step.imgPath}
-                  alt={step.label}
+                  src={cars[activeStep].imgPath}
+                  alt={step.car.variant}
                 />
               ) : null}
               <Button
-                component={Link}
+                component={MyLink(step.car.id)}
                 className={classes.up}
                 color="inherit"
-                to="/detail"
               >
                 View Car
               </Button>
@@ -171,8 +177,18 @@ class SwipeableTextMobileStepper extends React.Component {
 SwipeableTextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  ads: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(
-  SwipeableTextMobileStepper,
+const mapStateToProps = state => ({
+  ads: state.get('ads'),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  null,
+);
+
+export default withConnect(
+  withStyles(styles, { withTheme: true })(SwipeableTextMobileStepper),
 );

@@ -5,6 +5,7 @@ import AuthMiddleware from './AuthMiddleware';
 
 export default function withAuth(AuthComponent) {
   const Auth = new AuthMiddleware('http://localhost:8080');
+
   return class AuthWrapped extends Component {
     static propTypes = {
       history: PropTypes.object.isRequired,
