@@ -8,7 +8,7 @@ class StorageHandler {
 
   setToken(token) {
     // Saves user token to localStorage
-    localStorage.setItem('grm_token', token);
+    localStorage.setItem('grm_token', token.value);
   }
 
   setProperties(id, token) {

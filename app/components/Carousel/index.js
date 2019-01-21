@@ -15,24 +15,6 @@ import Button from '../../components/Button';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const cars = [
-  {
-    label: 'Mustgang',
-    imgPath:
-      'https://www.cytokines2015.com/wp-content/uploads/2018/03/cars-J.jpeg',
-  },
-  {
-    label: 'Ferrari SUV',
-    imgPath:
-      'https://cdn.images.express.co.uk/img/dynamic/24/590x/Ferrari-SUV-new-car-864627.jpg',
-  },
-  {
-    label: 'Mustang',
-    imgPath:
-      'https://img-ik.cars.co.za/images/2018/10/Mustang%20Bullitt/tr:n-news_large/MustangBullitt.jpg',
-  },
-];
-
 const styles = {
   root: {
     width: '100%',
@@ -92,14 +74,10 @@ class SwipeableTextMobileStepper extends React.Component {
     const { activeStep } = this.state;
     const maxSteps = ads.ads.length;
 
-    const MyLink = props => (
-      <Link
-        to={{
-          pathname: '/page',
-          data: props, // your data array of objects
-        }}
-      />
-    );
+    const MyLink = props => <Link to="/detail" {...props} />;
+    const save = (id) => {
+      localStorage.setItem('myData', id);
+    };
 
     return (
       <div className={classes.root}>
@@ -117,18 +95,19 @@ class SwipeableTextMobileStepper extends React.Component {
           enableMouseEvents
         >
           {ads.ads.map((step, index) => (
-            <div key={step.car.variant} className={classes.centera}>
+            <div key={step.id} className={classes.centera}>
               {Math.abs(activeStep - index) <= 3 ? (
                 <img
                   className={classes.img}
-                  src={cars[activeStep].imgPath}
+                  src={step.car.photoLinks[0]}
                   alt={step.car.variant}
                 />
               ) : null}
               <Button
-                component={MyLink(step.car.id)}
+                component={MyLink}
                 className={classes.up}
                 color="inherit"
+                onClick={save(step.id)}
               >
                 View Car
               </Button>

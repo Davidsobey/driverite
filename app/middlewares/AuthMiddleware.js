@@ -21,6 +21,10 @@ class AuthMiddleware extends React.Component {
     return decode(storageHandler.getToken());
   }
 
+  getToken() {
+    return storageHandler.getToken();
+  }
+
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = storageHandler.getToken(); // Getting token from localstorage
@@ -45,11 +49,11 @@ class AuthMiddleware extends React.Component {
     return this.fetch(`${this.domain}/Auth`, {
       method: 'POST',
       body: JSON.stringify({
-        username,
+        email: username,
         password,
       }),
     }).then((res) => {
-      storageHandler.setProperties(res.id, res.token);
+      storageHandler.setProperties(res.userVM.id, res.token);
       return Promise.resolve(res);
     });
   }
@@ -84,6 +88,9 @@ class AuthMiddleware extends React.Component {
     const error = new Error(response.statusText);
     error.response = response;
     throw error;
+  }
+  logout() {
+    localStorage.clear();
   }
 }
 

@@ -5,21 +5,6 @@ import StorageHandler from '../storage/StorageHandler';
 const storageHandler = new StorageHandler();
 
 class NetworkHandler {
-  // async requestCreateManagerByID(data) {
-  //   const url = `${api.DOMAIN + api.MANAGER_CREATE}`;
-
-  //   const response = await this.post(url, data);
-  //   return response;
-  // }
-
-  // async requestDeleteRotationByID(id) {
-  //   const response = await this.fetch(
-  //     `${api.DOMAIN + api.DELETE_ROTATION}/${id}`,
-  //     null,
-  //   );
-  //   return response;
-  // }
-
   async post(url, data) {
     return this.fetch(url, {
       method: 'POST',
@@ -36,10 +21,10 @@ class NetworkHandler {
 
   login(username, password) {
     // Get a token from api server using the fetch api
-    return this.fetch(`${this.domain}/login`, {
+    return this.fetch(`${this.domain}/auth`, {
       method: 'POST',
       body: JSON.stringify({
-        username,
+        email: username,
         password,
       }),
     }).then((res) => {
@@ -58,9 +43,9 @@ class NetworkHandler {
 
     // Setting Authorization header
     // Authorization: Bearer xxxxxxx.xxxxxxxx.xxxxxx
-    // if (this.loggedIn()) {
-    //   headers.Authorization = `Bearer ${storageHandler.getToken()}`;
-    // }
+    if (this.loggedIn()) {
+      headers.Authorization = `Bearer ${storageHandler.getToken()}`;
+    }
 
     const res = await fetch(url, {
       headers,

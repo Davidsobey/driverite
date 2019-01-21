@@ -8,7 +8,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-// import { submit } from 'redux-form';
+import { submit } from 'redux-form';
 import { connect } from 'react-redux';
 import FormControl from 'material-ui/Form/FormControl';
 import IconButton from 'material-ui/IconButton';
@@ -100,9 +100,13 @@ class LoginForm extends React.Component {
                 }}
               />
             </FormControl>
+
             <LoginButtonWrapper>
               <LoginInnerButtonWrapper>
-                <Button component={Link} color="inherit" to="/login">
+                <Button component={Link} color="inherit" to="/">
+                  Home
+                </Button>
+                <Button color="inherit" type="submit">
                   Login
                 </Button>
               </LoginInnerButtonWrapper>
@@ -126,8 +130,8 @@ const withForm = reduxForm(
   {
     form: FORM_NAME,
     initialValues: {
-      username: 'davidsobey@live.co.uk',
-      password: 'Sobey2503',
+      username: 'sachin@sachin.com',
+      password: 'password',
     },
   },
   LoginForm,
@@ -135,7 +139,7 @@ const withForm = reduxForm(
 
 const mapDispatchToProps = dispatch => ({
   onLoginSubmit: values => dispatch(loginAction(values)),
-  // login: () => dispatch(submit(FORM_NAME)),
+  login: () => dispatch(submit(FORM_NAME)),
 });
 
 const withConnect = connect(

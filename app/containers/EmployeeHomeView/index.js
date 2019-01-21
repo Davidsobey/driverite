@@ -24,11 +24,6 @@ class LoginPage extends React.PureComponent {
     this.Auth = new AuthMiddleware();
   }
 
-  componentWillMount() {
-    if (this.Auth.loggedIn()) {
-      this.props.history.push('/home');
-    }
-  }
 
   render() {
     return (

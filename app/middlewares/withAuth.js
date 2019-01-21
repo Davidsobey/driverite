@@ -6,7 +6,7 @@ import AuthMiddleware from './AuthMiddleware';
 export default function withAuth(AuthComponent) {
   const Auth = new AuthMiddleware('http://localhost:8080');
 
-  return class AuthWrapped extends Component {
+  class AuthWrapped extends Component {
     static propTypes = {
       history: PropTypes.object.isRequired,
     };
@@ -20,7 +20,8 @@ export default function withAuth(AuthComponent) {
 
     componentWillMount() {
       if (!Auth.loggedIn()) {
-        this.props.history.replace('/');
+        Auth.logout();
+        this.props.history.replace('/login');
       } else {
         try {
           const profile = Auth.getProfile();
@@ -29,7 +30,7 @@ export default function withAuth(AuthComponent) {
           });
         } catch (err) {
           Auth.logout();
-          this.props.history.replace('/');
+          this.props.history.replace('/login');
         }
       }
     }
@@ -37,10 +38,11 @@ export default function withAuth(AuthComponent) {
     render() {
       if (this.state.user) {
         return (
-          <AuthComponent history={this.props.history} user={this.state.user} />
+          <AuthComponent history={this.props.history} />
         );
       }
       return null;
     }
-  };
+  }
+  return AuthWrapped;
 }
