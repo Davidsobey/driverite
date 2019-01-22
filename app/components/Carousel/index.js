@@ -107,7 +107,7 @@ class SwipeableTextMobileStepper extends React.Component {
                 component={MyLink}
                 className={classes.up}
                 color="inherit"
-                onClick={save(step.id)}
+                onClick={save(index - 1)}
               >
                 View Car
               </Button>

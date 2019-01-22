@@ -7,6 +7,7 @@ import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
 import { Paper } from 'material-ui';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 import Button from '../../components/Button';
 
@@ -54,7 +55,9 @@ class HomePage extends React.Component {
   required = value => (value ? undefined : 'Required Field');
 
   render = () => {
-    const { classes } = this.props;
+    const { classes, ads } = this.props;
+    const id = localStorage.getItem('myData');
+
     return (
       <div className={classes.root}>
         <StyledAppBar className="posRel" position="relative">
@@ -78,30 +81,25 @@ class HomePage extends React.Component {
                 Car Make
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                Ford
+                {ads.ads[id].car.model.make.name}
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
                 Model
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                Mustang
+                {ads.ads[id].car.model.name}
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
                 Variant
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                Shelby GT
+                {ads.ads[id].car.variant}
               </Typography>
               <Typography className="orange-color" variant="title" gutterBottom>
                 Write Up
               </Typography>
               <Typography className="white-color" variant="body1" gutterBottom>
-                The Shelby Mustang is a high performance variant of the Ford
-                Mustang which was built by Shelby American from 1965 to 1968,
-                and from 1969 to 1970 by Ford. Following the introduction of the
-                fifth generation Ford Mustang in 2005, the Shelby nameplate was
-                revived as a new high-performance model, this time designed and
-                built by Ford.
+                {ads.ads[id].writeUp}
               </Typography>
             </Paper>
           </Grid>
@@ -114,27 +112,13 @@ class HomePage extends React.Component {
               >
                 GALLERY
               </Typography>
-              <img
-                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/SAI_6937.jpg"
-                className="detailImg"
-                alt=""
-              />
-              <img
-                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/SAI_7046.jpg"
-                className="detailImg"
-                alt=""
-              />
-              <img
-                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/SAI_7550.jpg"
-                className="detailImg"
-                alt=""
-              />
-              <img
-                src="https://img-ik.cars.co.za/images/2017/5/Shelby%20Update/tr:n-news_1200x/Winnie.jpg"
-                className="detailImg"
-                alt=""
-              />
-              <img src="" className="detailImg" alt="" />
+              {Array.isArray(ads.ads[id].car.photoLinks) ? (
+                ads.ads[id].car.photoLinks.map((obj, index) => (
+                  <img src={obj} id={index} className="detailImg" alt="" />
+                ))
+              ) : (
+                <div>No Photos</div>
+              )}
             </Paper>
           </Grid>
         </Grid>
@@ -143,8 +127,21 @@ class HomePage extends React.Component {
   };
 }
 
+const mapStateToProps = state => ({
+  ads: state.get('ads'),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  null,
+);
+
 HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
+  ads: PropTypes.object.isRequired,
 };
 
-export default compose(withStyles(styles))(HomePage);
+export default compose(
+  withStyles(styles),
+  withConnect,
+)(HomePage);
